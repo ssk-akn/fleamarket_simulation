@@ -39,11 +39,13 @@ php artisan storage:link
 ・MySQL8.0.26
 ##テーブル設計
 
-![スクリーンショット (7)](https://github.com/user-attachments/assets/5d37f340-d4e7-4086-a6de-0fe4e0cd102d)
+![スクリーンショット (8)](https://github.com/user-attachments/assets/17087195-a94d-4540-a74e-27248ff6e5a6)
 				
 ##ER図
 
 ![スクリーンショット (6)](https://github.com/user-attachments/assets/32ecfcea-3194-416b-bc0e-98141921ce1f)
+![スクリーンショット (9)](https://github.com/user-attachments/assets/cc86a7f4-a1c9-4735-98fe-9a2fa207e550)
+![スクリーンショット (9)](https://github.com/user-attachments/assets/f30f3965-e9b5-48a6-9128-fdde5a0c91db)
 
 ##URL
 ・開発環境：http://localhost/
