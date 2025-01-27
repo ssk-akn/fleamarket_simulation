@@ -41,7 +41,8 @@ php artisan storage:link
 
 ![スクリーンショット (8)](https://github.com/user-attachments/assets/17087195-a94d-4540-a74e-27248ff6e5a6)
 ![スクリーンショット (9)](https://github.com/user-attachments/assets/cc86a7f4-a1c9-4735-98fe-9a2fa207e550)
-![スクリーンショット (9)](https://github.com/user-attachments/assets/f30f3965-e9b5-48a6-9128-fdde5a0c91db)
+![スクリーンショット (10)](https://github.com/user-attachments/assets/cb0d6056-5d68-4ea1-9fad-9d46976986a7)
+
 
 ##ER図
 
