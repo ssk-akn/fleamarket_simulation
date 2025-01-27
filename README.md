@@ -38,7 +38,7 @@ php artisan storage:link
 ・Laravel8.83.27
 ・MySQL8.0.26
 ##テーブル設計
-画像
+![スクリーンショット (6)](https://github.com/user-attachments/assets/fb3b74d0-7e24-4364-bd28-02183508635e)
 ##ER図
 画像
 ##URL
