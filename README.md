@@ -40,12 +40,12 @@ php artisan storage:link
 ##テーブル設計
 
 ![スクリーンショット (8)](https://github.com/user-attachments/assets/17087195-a94d-4540-a74e-27248ff6e5a6)
-				
+![スクリーンショット (9)](https://github.com/user-attachments/assets/cc86a7f4-a1c9-4735-98fe-9a2fa207e550)
+![スクリーンショット (9)](https://github.com/user-attachments/assets/f30f3965-e9b5-48a6-9128-fdde5a0c91db)
+
 ##ER図
 
 ![スクリーンショット (6)](https://github.com/user-attachments/assets/32ecfcea-3194-416b-bc0e-98141921ce1f)
-![スクリーンショット (9)](https://github.com/user-attachments/assets/cc86a7f4-a1c9-4735-98fe-9a2fa207e550)
-![スクリーンショット (9)](https://github.com/user-attachments/assets/f30f3965-e9b5-48a6-9128-fdde5a0c91db)
 
 ##URL
 ・開発環境：http://localhost/
