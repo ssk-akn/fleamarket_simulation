@@ -38,9 +38,13 @@ php artisan storage:link
 ・Laravel8.83.27
 ・MySQL8.0.26
 ##テーブル設計
-![スクリーンショット (6)](https://github.com/user-attachments/assets/fb3b74d0-7e24-4364-bd28-02183508635e)
+
+![スクリーンショット (7)](https://github.com/user-attachments/assets/5d37f340-d4e7-4086-a6de-0fe4e0cd102d)
+				
 ##ER図
-画像
+
+![スクリーンショット (6)](https://github.com/user-attachments/assets/32ecfcea-3194-416b-bc0e-98141921ce1f)
+
 ##URL
 ・開発環境：http://localhost/
 ・phpMyAdmin:：http://localhost:8080/
