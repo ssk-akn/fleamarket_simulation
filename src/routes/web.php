@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ItemController::class, 'index']);
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/sell', [CategoryController::class, 'sell']);
 });
