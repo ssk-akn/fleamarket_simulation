@@ -14,34 +14,45 @@
                 <label for="name" class="register-form__label">ユーザー名</label>
                 <input type="text" name="name" id="name" class="register-form__input">
                 <p class="register-form__error-message">
-                    error
+                    @error('name')
+                    {{ $message }}
+                    @enderror
                 </p>
             </div>
             <div class="register-form__group">
                 <label for="email" class="register-form__label">メールアドレス</label>
                 <input type="email" name="email" id="email" class="register-form__input">
                 <p class="register-form__error-message">
-                    error
+                    @error('email')
+                    {{ $message }}
+                    @enderror
                 </p>
             </div>
             <div class="register-form__group">
                 <label for="password" class="register-form__label">パスワード</label>
                 <input type="password" name="password" id="password" class="register-form__input">
                 <p class="register-form__error-message">
-                    error
+                    @error('password')
+                    {{ $message }}
+                    @enderror
                 </p>
             </div>
             <div class="register-form__group">
                 <label for="password_confirmation" class="register-form__label">確認用パスワード</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="register-form__input">
                 <p class="register-form__error-message">
-                    error
+                    @error('password_confirmation')
+                    {{ $message }}
+                    @enderror
                 </p>
             </div>
             <div class="register-form__button">
                 <button class="register-form__button-submit">登録する</button>
             </div>
         </form>
-        <a href="/login" class="login-link">ログインはこちら</a>
+        <div class="login-link">
+            <a href="/login">ログインはこちら</a>
+        </div>
     </div>
 </div>
+@endsection
