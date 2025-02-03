@@ -24,13 +24,13 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'email' => ['required', 'email'],
+            'name' => ['required', 'unique'],
+            'email' => ['required', 'email', 'unique'],
             'password' => ['required', 'min:8', 'confirmed'],
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'name.required' => 'お名前を入力してください',

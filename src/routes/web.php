@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [ItemController::class, 'index']);
 
-
+Route::middleware('auth')->group(function () {
+    Route::get('/?tab=mylist', [ItemController::class, 'index']);
+    Route::get('/item/{id}', [ItemController::class, 'item']);
+    Route::get('/purchase/{id}',[ItemController::class, 'purchase']);
+    Route::get('/purchase/address/{id}', [ItemController::class, 'address']);
+    Route::get('/sell', [CategoryController::class, 'sell']);
+    Route::get('/mypage', [UserController::class, 'mypage']);
+    Route::get('/mypage?page=buy', [UserController::class, 'mypage']);
+    Route::get('/mypage?page=sell', [UserController::class, 'mypage']);
+    Route::get('/mypage/profile', [UserController::class, 'profile']);
+});
 

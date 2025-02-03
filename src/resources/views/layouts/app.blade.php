@@ -14,7 +14,16 @@
             <a class="header-link" href="/">
                 <img src="{{ asset('image/logo.svg') }}" alt="COACHTECH" class="header-img">
             </a>
-            @yield('link')
+            <ul class="header-nav">
+                @if (Auth::check())
+                <li class="header-nav__item">
+                    <form action="/logout" method="post" class="logout-form">
+                        @csrf
+                        <button class="logout-form__button">ログアウト</button>
+                    </form>
+                </li>
+                @endif
+            </ul>
         </header>
         <div class="content">
             @yield('content')
