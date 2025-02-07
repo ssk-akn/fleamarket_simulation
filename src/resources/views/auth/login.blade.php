@@ -10,16 +10,11 @@
     <div class="login-form__inner">
         <form class="login-form__form" action="\login" method="post">
             @csrf
-            @if ($errors->has('login'))
-            <p class="login-form__error-message">
-                {{ $errors->first('login') }}
-            </p>
-            @endif
             <div class="login-form__group">
-                <label for="login" class="login-form__label">ユーザー名 / メールアドレス</label>
-                <input type="text" name="login" id="login" class="login-form__input">
+                <label for="email" class="login-form__label">メールアドレス</label>
+                <input type="text" name="email" id="email" class="login-form__input">
                 <p class="login-form__error-message">
-                    @error('login')
+                    @error('email')
                     {{ $message }}
                     @enderror
                 </p>

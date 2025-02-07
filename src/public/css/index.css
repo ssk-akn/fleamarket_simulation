@@ -1,0 +1,83 @@
+.page-button__item {
+    display: flex;
+    margin: 30px auto;
+    padding: 10px 100px;  /*レスポンスここかえる*/
+    border-bottom: 2px solid #5F5F5F;
+}
+
+.recommend-button {
+    margin: 0 30px;
+    font-size: 24px;
+}
+
+.mypage-button {
+    margin: 0 30px;
+    font-size: 24px;
+}
+
+.recommend-button a {
+    text-decoration: none;
+}
+
+.mypage-button a {
+    text-decoration: none;
+}
+
+.active {
+    color: #FF0000;
+}
+
+.passive {
+    color: #5F5F5F;
+}
+
+.items-wrap {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.item-contents {
+    width: 20%;
+}
+
+.item-contents a {
+    text-decoration: none;
+}
+
+.item-image {
+    width: 100%;
+}
+
+.content-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-name {
+    font-size: 25px;
+    color: #000000;
+}
+
+.sold {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    background: #FF0000;
+    color: white;
+}
+
+@media screen and (max-width: 850px) {
+    .page-button__item {
+        margin: 15px auto;
+        padding: 10px 50px;
+    }
+    .item-name {
+        font-size: 15px;
+    }
+    .sold {
+        padding: 5px;
+        font-size: 12px;
+    }
+}

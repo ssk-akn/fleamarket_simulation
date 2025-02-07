@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 
-class LoginRequest extends FormRequest
+class LoginRequest extends FortifyLoginRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,25 +26,25 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'login' => ['required'],
-            'password' => ['required', 'min:8'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'string'],
         ];
     }
 
     public function message()
     {
         return [
-            'login.required' => 'お名前またはメールアドレスを入力してください',
-            'password.required' => 'パスワードくを入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
         ];
     }
 
-    public function failedValidation(\Illuminate\Contacts\Validation\Validator $validator)
+    public function failedValidation(Validator $validator)
     {
         $errors = $validator->errors();
-        if (!$errors->has('login') && !$errors->has('password')) {
-            $validator->errors()->add('login', 'ログイン情報が登録されていません。');
+        if (!$errors->has('email') && !$errors->has('password')) {
+            $validator->errors()->add('email', 'ログイン情報が登録されていません。');
         }
         parent::failedValidation($validator);
     }

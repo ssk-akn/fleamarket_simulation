@@ -18,6 +18,13 @@ class Item extends Model
         'image'
     ];
 
+    public function scopeItemsSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -43,7 +50,7 @@ class Item extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes()
+    public function likedByUser()
     {
         return $this->belongsToMany(User::class, 'likes');
     }

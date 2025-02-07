@@ -47,14 +47,5 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
-
-        Fortify::authenticateUsing(function ($request) {
-            $user = User::where('email', $request->login)
-                ->orWhere('name', $request->login)->first();
-
-                if ($user && Hash::check($request->password, $user->password)) {
-                    return $user;
-                }
-        });
     }
 }

@@ -14,16 +14,26 @@
             <a class="header-link" href="/">
                 <img src="{{ asset('image/logo.svg') }}" alt="COACHTECH" class="header-img">
             </a>
+            @if (Auth::check())
+            <div class="header__search-form">
+                <form action="/" method="get">
+                    @csrf
+                    <input class="search-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
+                    <input type="hidden" name="page" value="{{ request('page', 'all') }}">
+                    <button class="search-button" type="submit">
+                        <img src="{{ asset('image/search.png') }}" alt="検索">
+                    </button>
+                </form>
+            </div>
             <ul class="header-nav">
-                @if (Auth::check())
                 <li class="header-nav__item">
                     <form action="/logout" method="post" class="logout-form">
                         @csrf
-                        <button class="logout-form__button">ログアウト</button>
+                        <button class="logout-button">ログアウト</button>
                     </form>
                 </li>
-                @endif
             </ul>
+            @endif
         </header>
         <div class="content">
             @yield('content')
