@@ -38,5 +38,17 @@ class ItemController extends Controller
         return $itemQuery->get();
     }
 
+    public function detail($item_id)
+    {
+        $item = Item::with(['categories', 'condition', 'likedByUser', 'comments.user'])
+        ->findOrFail($item_id);
+
+        $likeCount = $item->likedByUser->count();
+        $isLiked = $item->likedByUsers->contains(Auth::id());
+        $comments = $item->comments;
+
+        return view('item', compact(['item', 'likeCount', 'isLiked', 'comments']));
+    }
+
 
 }

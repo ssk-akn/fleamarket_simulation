@@ -14,10 +14,11 @@ use App\Http\Controllers\ItemController;
 |
 */
 Route::get('/', [ItemController::class, 'index']);
+Route::get('/item/{item_id}', [ItemController::class, 'detail']);
+Route::post('/item/{item_id}/like', [LikeController::class, 'store']);
+Route::post('/item/{item_id}/unlike', [LikeController::class, 'destroy']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/?tab=mylist', [ItemController::class, 'index']);
-    Route::get('/item/{id}', [ItemController::class, 'item']);
     Route::get('/purchase/{id}',[ItemController::class, 'purchase']);
     Route::get('/purchase/address/{id}', [ItemController::class, 'address']);
     Route::get('/sell', [CategoryController::class, 'sell']);
