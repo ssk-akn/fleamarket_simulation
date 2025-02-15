@@ -23,6 +23,12 @@
             <button class="logout-button">ログアウト</button>
         </form>
     </li>
+    <li class="header-nav__item">
+        <a href="/mypage" class="mypage-button">マイページ</a>
+    </li>
+    <li class="header-nav__item">
+        <a href="/sell" class="sell-button">出品</a>
+    </li>
     @else
     <li class="header-nav__item">
         <a href="/login" class="login-button">ログイン</a>
@@ -31,22 +37,21 @@
 </ul>
 @endsection
 
+
 @section('content')
-<div class="item-detail">
+<div class="item-page">
     <div class="item-image">
         <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
     </div>
     <div class="item-contents">
         <div class="item-name">
-            <h1>{{ $item->name }}</h1>
+            {{ $item->name }}
         </div>
         <div class="item-brand">
             {{ $item->brand }}
         </div>
         <div class="item-price">
-            <span class="price-span">&yen;</span>
-            {{ $item->price }}
-            <span class="price-span">（税込）</span>
+            &yen;<span class="price-span">{{ number_format($item->price) }}</span>（税込）
         </div>
         <div class="item-reaction">
             <div class="item-reaction__likes">
@@ -57,13 +62,18 @@
                         <img src="{{ asset('image/y_star.png') }}" alt="いいね解除">
                         @else
                         <img src="{{ asset('image/star.png') }}" alt="いいね">
+                        @endif
                     </button>
                 </form>
-                <span>{{ $itemCount }}</span>
+                <div class="item-reaction__likes-count">
+                    {{ $itemCount }}
+                </div>
             </div>
             <div class="item-reaction__comments">
-                <img src="{{ asset('image/comment.png')" alt="コメント">
-                <span>{{ $comments->count() }}</span>
+                <img src="{{ asset('image/comment.png') }}" alt="コメント">
+                <div class="item-reaction__comments-count">
+                    {{ $comments->count() }}
+                </div>
             </div>
         </div>
         <div class="item-purchase__button">
@@ -72,46 +82,71 @@
             </a>
         </div>
         <div class="item-description">
-            <h2>商品説明</h2>
+            <div class="item-description__title">
+                商品説明
+            </div>
             <p class="item-description__content">
                 {{ $item->description }}
             </p>
         </div>
         <div class="item-detail">
-            <h2>商品の情報</h2>
+            <div class="item-detail__title">
+                商品の情報
+            </div>
             <div class="item-categories">
-                <h3>カテゴリー</h3>
-                @foreach ($item->categories as $category)
-                <p>{{ $category->category }}</p>
-                @endforeach
+                <div class="item-categories__title">
+                    カテゴリー
+                </div>
+                <div class="item-categories__wrap">
+                    @foreach ($item->categories as $category)
+                    <p>{{ $category->category }}</p>
+                    @endforeach
+                </div>
             </div>
             <div class="item-condition">
-                <h3>商品の状態</h3>
+                <div class="item-condition__title">
+                    商品の状態
+                </div>
                 <p>{{ $item->condition->condition }}</p>
             </div>
-            <div class="item-comments">
-                <h2>コメント<span>(</span>{{ $comments->count() }}<span>)</span></h2>
-                @foreach ($comments as $comment)
+        </div>
+        <div class="item-comments">
+            <div class="item-comments__title">
+                コメント({{ $comments->count() }})
+            </div>
+            @foreach ($comments as $comment)
+            <div class="item-comments__table">
                 <div class="item-comments__user">
                     <img src="{{ asset('storage/' . $comment->user->image ) }}" alt="">
-                    {{ $comment->user->name }}
+                    <div class="item-comments__user-name">
+                        {{ $comment->user->name }}
+                    </div>
                 </div>
                 <div class="item-comments__content">
                     {{ $comment->comment }}
                 </div>
-                @endforeach
-                <div class="item-comments__input">
-                    <div class="item-comments__input-title">
+            </div>
+            @endforeach
+            <form action="/item/{{$item_id}}/comment" method="post" class="item-comments__form">
+                @csrf
+                <div class="item-comments__post">
+                    <div class="item-comments__post-title">
                         商品へのコメント
                     </div>
-                    <input type="text">
+                    <textarea name="comment"></textarea>
+                    <div class="error">
+                        @error('comment')
+                        {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div class="item-comments__button">
-                    <button class="item-comments__button-submit">
+                    <button class="item-comments__button-submit" type="submit">
                         コメントを送信する
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+@endsection

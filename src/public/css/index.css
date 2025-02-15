@@ -16,11 +16,34 @@
     width: 45px;
 }
 
-.logout-button {
+.header-nav {
+    display: flex;
+    padding: 0;
+}
+
+.header-nav__item {
+    list-style-type: none;
+}
+
+.logout-button,
+.login-button,
+.mypage-button {
+    margin-right: 15px;
     border: none;
     background: transparent;
+    text-decoration: none;
     font-size: 24px;
     color: #FFFFFF;
+}
+
+.sell-button {
+    margin: 0 15px;
+    padding: 5px 15px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #000000;
 }
 
 .login-button {
@@ -32,7 +55,7 @@
 .page-button__item {
     display: flex;
     margin: 30px auto;
-    padding: 10px 100px;  /*レスポンスここかえる*/
+    padding: 10px 100px;
     border-bottom: 2px solid #5F5F5F;
 }
 
@@ -41,7 +64,7 @@
     font-size: 24px;
 }
 
-.mypage-button {
+.mylist-button {
     margin: 0 30px;
     font-size: 24px;
 }
@@ -50,7 +73,7 @@
     text-decoration: none;
 }
 
-.mypage-button a {
+.mylist-button a {
     text-decoration: none;
 }
 
@@ -101,18 +124,22 @@
 
 @media screen and (max-width: 850px) {
     .search-input {
-        width: 250px;
+        width: 230px;
         height: 35px;
-        padding: 0 30px;
-        font-size: 18px;
+        padding: 0 25px;
+        font-size: 14px;
     }
 
     .search-button img {
-        width: 30px;
+        width: 20px;
     }
 
-    .logout-button {
-        font-size: 18px;
+    .logout-button,
+    .login-button,
+    .mypage-button,
+    .sell-button {
+        font-size: 14px;
+        margin: 0 5px;
     }
 
     .page-button__item {

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
 @section('link')
@@ -37,58 +37,49 @@
 </ul>
 @endsection
 
-
 @section('content')
-<div class="page-button__item">
-    <div class="recommend-button">
-        <a href="{{ url('/') }}" class="{{ request('page', 'all') === 'all' ? 'active' : 'passive' }}">おすすめ</a>
+<div class="profile">
+    <div class="user-icon">
+        <img src="{{ asset('storage/' . $user->image) }}" alt="">
     </div>
-    <div class="mylist-button">
-        <a href="{{ url('/?page=mylist') }}" class="{{ request('page') === 'mylist' ? 'active' : 'passive' }}">マイリスト</a>
+    <div class="user-name">
+        {{ $user->name }}
+    </div>
+    <div class="profile-edit">
+        <a href="/mypage/profile" class="profile-edit__button">
+            プロフィールを編集
+        </a>
+    </div>
+</div>
+<div class="page-button__group">
+    <div class="sell-item">
+        <a href="/mypage?page=sell" class="page-button {{ $page === 'sell' ? 'active' : 'passive'">出品した商品</a>
+    </div>
+    <div class="buy-item">
+        <a href="/mypage?page=buy" class="page-button {{ $page === 'buy' ? 'active' : 'passive' }}">購入した商品</a>
     </div>
 </div>
 <div class="items-wrap">
-    @foreach ($items as $item)
+    @if ($page === 'sell')
+    @foreach ($sellItems as $item)
     <div class="item-contents">
         <a href="/item/{{ $item->id }}">
             <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
-                @if ($item->order)
-                <p class="sold">sold</p>
-                @endif
             </div>
         </a>
     </div>
     @endforeach
-
+    @else
+    @foreach ($buyItems as $item)
     <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
+        <a href="/item/{{ $item->id }}">
+            <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
             <div class="content-item">
-                <p class="item-name">ピカチュウ</p>
-                <p class="sold">sold</p>
+                <p class="item-name">{{ $item->name }}</p>
             </div>
         </a>
     </div>
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <p class="item-name">ピカチュウ</p>
-        </a>
-    </div>
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <p class="item-name">ピカチュウ</p>
-        </a>
-    </div>
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <p class="item-name">ピカチュウ</p>
-        </a>
-    </div>
-
+    @endiif
 </div>
-@endsection
