@@ -15,4 +15,24 @@ class SellController extends Controller
 
         return view('sell', compact('categories', 'conditions'));
     }
+
+    public function store(Request $request)
+    {
+        $userId = Auth::id();
+
+        $item = new Item();
+        $item->user_id = $userId;
+        $item->condition_id = $request->condition;
+        $item->name = $request->name;
+        $item->brand = $request->brand;
+        $item->price = $request->price;
+        $item->description = $request->description;
+        $imagePath = $request->file('image')->store('images', 'public');
+        $item->image = $imagePath;
+        $item->save();
+
+        $item->categories()->sync($request->categories);
+
+        return redirect('/mypage');
+    }
 }

@@ -44,7 +44,7 @@
 <form action="/sell" method="post" class="sell-form">
     <div class="form-group">
         <label class="form-group__title">商品画像</label>
-        <output id="list" class="image-output"></output>
+        <output id="preview" class="image-output"></output>
         <input type="file" name="image" id="item-image" class="image-input">
     </div>
     <div class="item-detail__title">
@@ -52,13 +52,16 @@
     </div>
     <div class="form-group">
         <label class="form-group__title">カテゴリー</label>
-        <div class="categories-wrap">
-
+        <div class="category-wrap">
+            @foreach($categories as $category)
+            <input type="checkbox" name="categories[]" id="{{ $category->id }}" value="{{ $category->id }}">
+            <label for="{{ $category->id }}" class="category-label">{{ $category->name }}</label>
+            @endforeach
         </div>
     </div>
     <div class="form-group">
         <label class="form-group__title">商品の状態</label>
-        <select name="condition" id="">
+        <select name="condition">
             <option value="">選択してください</option>
             @foreach($conditions as $condition)
             <option value="{{ $condition->id }}">{{ $condition->condition }}</option>
@@ -88,3 +91,17 @@
         <button class="form-button__submit">出品する</button>
     </div>
 </form>
+
+<script>
+    document.getElementById('item-image').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+@endsection

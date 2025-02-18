@@ -51,7 +51,7 @@
     @foreach ($items as $item)
     <div class="item-contents">
         <a href="/item/{{ $item->id }}">
-            <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            <img class="item-image" src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
                 @if ($item->order)
@@ -61,34 +61,5 @@
         </a>
     </div>
     @endforeach
-
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <div class="content-item">
-                <p class="item-name">ピカチュウ</p>
-                <p class="sold">sold</p>
-            </div>
-        </a>
-    </div>
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <p class="item-name">ピカチュウ</p>
-        </a>
-    </div>
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <p class="item-name">ピカチュウ</p>
-        </a>
-    </div>
-    <div class="item-contents">
-        <a href="/item">
-            <img class="item-image" src="{{ asset('image/pika.jpg') }}" alt="商品画像">
-            <p class="item-name">ピカチュウ</p>
-        </a>
-    </div>
-
 </div>
 @endsection

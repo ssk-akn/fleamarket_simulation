@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [UserController::class, 'getProfile']);
     Route::post('/mypage/profile', [UserController::class, 'update']);
     Route::get('/sell', [SellController::class, 'getSell']);
-
+    Route::post('/sell',[SellController::class, 'store']);
 });
 
