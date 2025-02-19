@@ -87,12 +87,29 @@
 
 .items-wrap {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
+}
+
+.items-wrap::before{
+    content:"";
+    display: block;
+    margin: 0 2%;
+    width:20%;
+    order:1;
+}
+
+.items-wrap::after{
+    content:"";
+    display: block;
+    margin: 0 2%;
+    width:20%;
 }
 
 .item-contents {
     width: 20%;
+    margin: 0 2%;
 }
 
 .item-contents a {

@@ -32,9 +32,11 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $user = Auth::user();
+
         if ($request->hasFile('image')) {
             if ($user->image) {
-                Storage::delate('public/' . $user->image);
+                Storage::delete('public/' . $user->image);
             }
 
             $imagePath = $request->file('image')->store('images', 'public');

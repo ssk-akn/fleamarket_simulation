@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
@@ -17,8 +18,7 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 Route::get('/', [ItemController::class, 'index']);
-//Route::get('/item/{item_id}', [ItemController::class, 'detail']);
-Route::get('/item', [ItemController::class, 'example']);
+Route::get('/item/{item_id}', [ItemController::class, 'detail']);
 
 Route::middleware('auth')->group(function () {
     Route::post('/item/{item_id}/like', [LikeController::class, 'store']);
@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase', [PurchaseController::class, 'store']);
 
     Route::get('/mypage', [UserController::class, 'getMypage']);
-    Route::get('/mypage/profile', [UserController::class, 'getProfile']);
-    Route::post('/mypage/profile', [UserController::class, 'update']);
+    Route::get('/mypage/profile', [UserController::class, 'getProfile']);//
+    Route::post('/mypage/profile', [UserController::class, 'update']);//
     Route::get('/sell', [SellController::class, 'getSell']);
     Route::post('/sell',[SellController::class, 'store']);
 });

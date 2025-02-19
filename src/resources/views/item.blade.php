@@ -66,7 +66,7 @@
                     </button>
                 </form>
                 <div class="item-reaction__likes-count">
-                    {{ $itemCount }}
+                    {{ $likeCount }}
                 </div>
             </div>
             <div class="item-reaction__comments">
@@ -127,13 +127,13 @@
                 </div>
             </div>
             @endforeach
-            <form action="/item/{{$item_id}}/comment" method="post" class="item-comments__form">
+            <form action="/item/{{$item->id}}/comment" method="post" class="item-comments__form">
                 @csrf
                 <div class="item-comments__post">
                     <div class="item-comments__post-title">
                         商品へのコメント
                     </div>
-                    <textarea name="comment"></textarea>
+                    <textarea name="comment" class="item-comments__text"></textarea>
                     <div class="error">
                         @error('comment')
                         {{ $message }}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endsection
 
 @section('link')
@@ -41,14 +41,25 @@
 <div class="profile-title">
         プロフィール設定
 </div>
-<form action="/mypage/profile" method="post" class="profile-form">
-    <div class="profile-icon">
-        <div class="profile-img">
-            <img id="preview" src="{{ asset('storage/' . $user->image) }}" alt="画像">
+<form action="/mypage/profile" method="post" enctype="multipart/form-data" class="profile-form">
+    @csrf
+    <div class="profile-image">
+        <div class="profile-image__item">
+            @if($user->image)
+            <div class="image-circle">
+                <img src="{{ asset('storage/' . $user->image) }}" alt="画像" class="user-image">
+            </div>
+            @else
+            <div class="image-circle">
+            <img src="" alt="" class="user-image">
+            </div>
+            @endif
         </div>
-        <div class="profile-img__input">
-            <div class="profile-img__input--custom">画像を選択する</div>
-            <input type="file" name="image" id="imageInput" accept="image/*">
+        <div class="profile-image__input">
+            <label class="profile-image__input-custom">
+                画像を選択する
+                <input type="file" name="image" id="imageInput" accept="image/*" class="profile-image__input-none">
+            </label>
         </div>
     </div>
     <div class="profile-contents">
@@ -82,7 +93,7 @@
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
+                document.querySelector('.user-image').src = e.target.result;
             };
             reader.readAsDataURL(file);
         }

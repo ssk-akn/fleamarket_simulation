@@ -19,8 +19,12 @@ class ItemController extends Controller
         return view('index', compact('items', 'page', 'keyword'));
     }
 
-    public function getFilteredItems($page, $keyword, $currentUserId)
+    private function getFilteredItems($page, $keyword, $currentUserId)
     {
+        if ($page === 'mylist' && !$currentUserId) {
+            return collect([]);
+        }
+
         $itemQuery = Item::with('order');
 
         if ($page === 'mylist' && $currentUserId) {
@@ -32,7 +36,7 @@ class ItemController extends Controller
         }
 
         if ($keyword) {
-            $itemQuery->itemSearch($keyword);
+            $itemQuery->itemsSearch($keyword);
         }
 
         return $itemQuery->get();
@@ -44,11 +48,9 @@ class ItemController extends Controller
         ->findOrFail($item_id);
 
         $likeCount = $item->likedByUser->count();
-        $isLiked = $item->likedByUsers->contains(Auth::id());
+        $isLiked = $item->likedByUser->contains(Auth::id());
         $comments = $item->comments;
 
         return view('item', compact(['item', 'likeCount', 'isLiked', 'comments']));
     }
-
-
 }

@@ -108,6 +108,7 @@
 .item-reaction__likes-count,
 .item-reaction__comments-count {
     font-size: 18px;
+    margin: 0 auto;
 }
 
 .item-purchase__button-submit,
@@ -214,6 +215,7 @@
 .item-comments__text {
     width: 100%;
     height: 240px;
+    font-size: 26px;
 }
 
 @media screen and (max-width: 850px) {
