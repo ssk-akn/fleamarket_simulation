@@ -1,0 +1,214 @@
+.search-input {
+    width: 450px;
+    height: 50px;
+    padding: 0 50px;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #000000;
+}
+
+.search-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.search-button img {
+    width: 45px;
+}
+
+.header-nav {
+    display: flex;
+    padding: 0;
+}
+
+.header-nav__item {
+    list-style-type: none;
+}
+
+.logout-button,
+.login-button,
+.mypage-button {
+    margin-right: 15px;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.sell-button {
+    margin: 0 15px;
+    padding: 5px 15px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #000000;
+}
+
+.login-button {
+    text-decoration: none;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.purchase {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.purchase-detail {
+    padding: 0 40px;
+    width: 60%;
+}
+
+.item-confirm,
+.item-payment,
+.item-destination {
+    border-bottom: 1px solid #000000;
+}
+
+.item-confirm {
+    padding: 40px 0;
+    display: flex;
+}
+
+.item-confirm__img {
+    width: 25%;
+    aspect-ratio: 1;
+}
+
+.item-confirm__img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.item-confirm__detail {
+    padding: 0 40px;
+}
+
+.item-confirm__name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.item-confirm__price {
+    font-size: 27px;
+}
+
+.item-payment,
+.item-destination {
+    padding: 30px;
+}
+
+.item-payment__title,
+.item-destination__title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.select,
+.item-destination__address {
+    margin: 50px;
+}
+
+.select {
+    padding: 5px;
+    width: 50%;
+    border: 1px solid #5F5F5F;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+
+.item-destination {
+    display: flex;
+    justify-content: space-between;
+}
+
+.postcode,
+.address,
+.building {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.address,
+.building {
+    display: inline-block;
+}
+
+.item-destination__change a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #0073CC;
+}
+
+.purchase-confirm {
+    width: 40%;
+    padding: 40px;
+}
+
+.confirm__table {
+    width: 100%;
+}
+
+.confirm__row {
+    border: 1px solid #000000;
+}
+
+.confirm__label {
+    padding: 40px;
+    font-size: 20px;
+}
+
+.confirm__date {
+    padding: 40px;
+    font-size: 24px;
+}
+
+.purchase-button__submit {
+    width: 100%;
+    margin-top: 40px;
+    padding: 10px;
+    background: #FF5555;
+    border: none;
+    border-radius: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 850px) {
+    .search-input {
+        width: 230px;
+        height: 35px;
+        padding: 0 25px;
+        font-size: 14px;
+    }
+
+    .search-button img {
+        width: 20px;
+    }
+
+    .logout-button,
+    .login-button,
+    .mypage-button,
+    .sell-button {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+
+    .purchase {
+        display: block;
+    }
+
+    .purchase-detail {
+        width: 100%;
+    }
+
+    .purchase-confirm {
+        width: 100%;
+    }
+}

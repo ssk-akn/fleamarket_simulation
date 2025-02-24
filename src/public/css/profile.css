@@ -83,7 +83,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 150px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -95,7 +95,6 @@
     overflow: hidden;
     background: #D9D9D9;
 }
-
 
 .profile-image__input {
     margin-left: 40px;
@@ -140,4 +139,29 @@
     font-size: 26px;
     font-weight: bold;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 850px) {
+    .search-input {
+        width: 230px;
+        height: 35px;
+        padding: 0 25px;
+        font-size: 14px;
+    }
+
+    .search-button img {
+        width: 20px;
+    }
+
+    .logout-button,
+    .login-button,
+    .mypage-button,
+    .sell-button {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+
+    .profile-form {
+        width: 80%;
+    }
 }

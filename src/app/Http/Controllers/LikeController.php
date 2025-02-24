@@ -16,7 +16,7 @@ class LikeController extends Controller
             $user->likedItems()->attach($item_id);
         }
 
-        return redirect('/item/{item_id}', compact('item_id'));
+        return redirect()->route('item.detail', ['item_id' => $item_id]);
     }
 
     public function destroy($item_id)
@@ -27,6 +27,6 @@ class LikeController extends Controller
             $user->likedItems()->detach($item_id);
         }
 
-        return redirect('/item/{item_id}', compact('item_id'));
+        return redirect()->route('item.detail', compact('item_id'));
     }
 }

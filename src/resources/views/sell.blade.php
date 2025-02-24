@@ -41,11 +41,17 @@
 <div class="sell-title">
     商品の出品
 </div>
-<form action="/sell" method="post" class="sell-form">
+<form action="/sell" method="post" class="sell-form" enctype="multipart/form-data">
+    @csrf
     <div class="form-group">
         <label class="form-group__title">商品画像</label>
-        <output id="preview" class="image-output"></output>
-        <input type="file" name="image" id="item-image" class="image-input">
+        <div class="item-image">
+            <img id="preview" alt="商品画像" class="image-preview">
+            <label class="image-input__custom">
+                画像を選択する
+                <input type="file" name="image" id="item-image" class="image-input">
+            </label>
+        </div>
     </div>
     <div class="item-detail__title">
         商品の詳細
@@ -55,13 +61,13 @@
         <div class="category-wrap">
             @foreach($categories as $category)
             <input type="checkbox" name="categories[]" id="{{ $category->id }}" value="{{ $category->id }}">
-            <label for="{{ $category->id }}" class="category-label">{{ $category->name }}</label>
+            <label for="{{ $category->id }}" class="category-label">{{ $category->category }}</label>
             @endforeach
         </div>
     </div>
     <div class="form-group">
         <label class="form-group__title">商品の状態</label>
-        <select name="condition">
+        <select name="condition" class="condition-select">
             <option value="">選択してください</option>
             @foreach($conditions as $condition)
             <option value="{{ $condition->id }}">{{ $condition->condition }}</option>
@@ -85,10 +91,10 @@
     </div>
     <div class="form-group">
         <label class="form-group__title">販売価格</label>
-        <input type="text" value="&yen;" class="input">
+        <input type="text" name="price" class="input">
     </div>
     <div class="form-button">
-        <button class="form-button__submit">出品する</button>
+        <button class="form-button__submit" type="submit">出品する</button>
     </div>
 </form>
 
@@ -98,7 +104,9 @@
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
+                const preview = document.getElementById('preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
             };
             reader.readAsDataURL(file);
         }

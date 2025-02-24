@@ -51,7 +51,9 @@
     @foreach ($items as $item)
     <div class="item-contents">
         <a href="/item/{{ $item->id }}">
-            <img class="item-image" src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            <div class="item-image">
+                <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            </div>
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
                 @if ($item->order)

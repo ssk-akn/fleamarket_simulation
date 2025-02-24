@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ExhibitionRequest;
+use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
 
@@ -16,7 +19,7 @@ class SellController extends Controller
         return view('sell', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
         $userId = Auth::id();
 

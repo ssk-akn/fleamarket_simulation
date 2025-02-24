@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
+use App\Models\Item;
+use App\Models\Order;
 
 class PurchaseController extends Controller
 {
@@ -19,8 +24,9 @@ class PurchaseController extends Controller
     public function updatePayment(Request $request)
     {
         session(['payment' => $request->payment]);
+        $item_id = $request->item_id;
 
-        return redirect('/purchase/{item_id}', ['item_id' => $request->item_id]);
+        return redirect()->route('purchase.get', ['item_id' => $item_id]);
     }
 
     public function getAddress($item_id)

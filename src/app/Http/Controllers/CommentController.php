@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -12,9 +15,9 @@ class CommentController extends Controller
 
         Comment::create([
             'item_id' => $item_id,
-            'user_id' => $user_id,
+            'user_id' => $user->id,
             'comment' => $request->comment,
         ]);
-        return redirect('/item/{item_id}/', compact('item_id'));
+        return redirect()->route('item.detail', compact('item_id'));
     }
 }

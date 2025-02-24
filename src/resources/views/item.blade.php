@@ -55,7 +55,7 @@
         </div>
         <div class="item-reaction">
             <div class="item-reaction__likes">
-                <form action="{{ $isLiked ? '/item/{item_id}/like' : '/item/{item_id}/unlike' }}" method="post">
+                <form action="{{ $isLiked ? route('item.destroy', ['item_id' => $item->id]) : route('item.store', ['item_id' => $item->id]) }}" method="post">
                     @csrf
                     <button class="item-reaction__likes-button">
                         @if ($isLiked)

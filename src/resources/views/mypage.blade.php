@@ -39,8 +39,8 @@
 
 @section('content')
 <div class="profile">
-    <div class="user-icon">
-        <img src="{{ asset('storage/' . $user->image) }}" alt="">
+    <div class="image-circle">
+        <img class="user-image" src="{{ asset('storage/' . $user->image) }}" alt="画像">
     </div>
     <div class="user-name">
         {{ $user->name }}
@@ -53,7 +53,7 @@
 </div>
 <div class="page-button__group">
     <div class="sell-item">
-        <a href="/mypage?page=sell" class="page-button {{ $page === 'sell' ? 'active' : 'passive'">出品した商品</a>
+        <a href="/mypage?page=sell" class="page-button {{ $page === 'sell' ? 'active' : 'passive' }}">出品した商品</a>
     </div>
     <div class="buy-item">
         <a href="/mypage?page=buy" class="page-button {{ $page === 'buy' ? 'active' : 'passive' }}">購入した商品</a>
@@ -64,7 +64,9 @@
     @foreach ($sellItems as $item)
     <div class="item-contents">
         <a href="/item/{{ $item->id }}">
-            <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            <div class="item-image">
+                <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            </div>
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
             </div>
@@ -75,11 +77,15 @@
     @foreach ($buyItems as $item)
     <div class="item-contents">
         <a href="/item/{{ $item->id }}">
-            <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            <div class="item-image">
+                <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+            </div>
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
             </div>
         </a>
     </div>
-    @endiif
+    @endforeach
+    @endif
 </div>
+@endsection

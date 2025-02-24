@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfileRequest;
 use App\Models\Item;
 use App\Models\Order;
 
@@ -20,7 +21,7 @@ class UserController extends Controller
 
         $page = $request->get('page', 'sell');
 
-        return view('mypage', compact('user', 'sellItems', 'buyItems'. 'page'));
+        return view('mypage', compact('user', 'sellItems', 'buyItems', 'page'));
     }
 
     public function getProfile()
@@ -30,7 +31,7 @@ class UserController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         $user = Auth::user();
 
