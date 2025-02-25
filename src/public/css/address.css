@@ -1,0 +1,130 @@
+.search-input {
+    width: 450px;
+    height: 50px;
+    padding: 0 50px;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #000000;
+}
+
+.search-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.search-button img {
+    width: 45px;
+}
+
+.header-nav {
+    display: flex;
+    padding: 0;
+}
+
+.header-nav__item {
+    list-style-type: none;
+}
+
+.logout-button,
+.login-button,
+.mypage-button {
+    margin-right: 15px;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.sell-button {
+    margin: 0 15px;
+    padding: 5px 15px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #000000;
+}
+
+.login-button {
+    text-decoration: none;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.address__header {
+    padding: 20px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.address-form {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.form-group {
+    margin: 30px 0;
+}
+
+.form-group__label {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-group__input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+.update-button {
+    padding: 30px 0;
+}
+
+.update-button__submit {
+    padding: 10px;
+    width: 100%;
+    background: #FF5555;
+    border: none;
+    border-radius: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.error {
+    font-size: 20px;
+    color: #f51818;
+}
+
+
+@media screen and (max-width: 850px) {
+    .search-input {
+        width: 230px;
+        height: 35px;
+        padding: 0 25px;
+        font-size: 14px;
+    }
+
+    .search-button img {
+        width: 20px;
+    }
+
+    .logout-button,
+    .login-button,
+    .mypage-button,
+    .sell-button {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+
+    .address-form {
+        width: 80%;
+    }
+}

@@ -43,7 +43,7 @@ class PurchaseController extends Controller
             'new_building' => $request->building ?? null,
         ]);
 
-        return redirect('/purchase/{item_id}', compact('item_id'));
+        return redirect()->route('purchase.get', ['item_id' => $item_id]);
     }
 
     public function store(PurchaseRequest $request)

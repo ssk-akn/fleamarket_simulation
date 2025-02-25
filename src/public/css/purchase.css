@@ -180,6 +180,10 @@
     color: #FFFFFF;
 }
 
+.error {
+    color: #ff0000;
+}
+
 @media screen and (max-width: 850px) {
     .search-input {
         width: 230px;
@@ -209,6 +213,7 @@
     }
 
     .purchase-confirm {
+        margin-top: 40px;
         width: 100%;
     }
 }

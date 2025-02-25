@@ -38,27 +38,35 @@
 @endsection
 
 @section('content')
-<div class="change-page">
-    <div class="change-page__header">
-        <h1>住所の変更</h1>
-    </div>
-    <form action="/purchase/address/{{ $item->id }}" method="post">
-        @csrf
-        <div class="form-group">
-            <label for="postcode" class="form-group__label">郵便番号</label>
-            <input type="text" name="postcode" id="postcode" value="{{ old('postcode') }}" class="form-group__input">
-        </div>
-        <div class="form-group">
-            <label for="address" class="form-group__label">住所</label>
-            <input type="text" name="address" id="address" value="{{ old('address') }}" class="form-group__input">
-        </div>
-        <div class="form-group">
-            <label for="building" class="form-group__label">建物名</label>
-            <input type="text" name="building" id="building" value="{{ old('building') }}" class="form-group__input">
-        </div>
-        <div class="update-button">
-            <button class="update-button__submit" type="submit">更新する</button>
-        </div>
-    </form>
+<div class="address__header">
+    住所の変更
 </div>
+<form action="/purchase/address/{{ $item_id }}" method="post" class="address-form">
+    @csrf
+    <div class="form-group">
+        <label for="postcode" class="form-group__label">郵便番号</label>
+        <input type="text" name="postcode" id="postcode" value="{{ old('postcode') }}" class="form-group__input">
+        @error('postcode')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="address" class="form-group__label">住所</label>
+        <input type="text" name="address" id="address" value="{{ old('address') }}" class="form-group__input">
+        @error('address')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="building" class="form-group__label">建物名</label>
+        <input type="text" name="building" id="building" value="{{ old('building') }}" class="form-group__input">
+    </div>
+    <div class="update-button">
+        <button class="update-button__submit" type="submit">更新する</button>
+    </div>
+</form>
 @endsection

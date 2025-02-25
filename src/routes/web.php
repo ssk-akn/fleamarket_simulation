@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'getPurchase'])->name('purchase.get');
     Route::post('/purchase/update-payment', [PurchaseController::class, 'updatePayment'])->name('purchase.payment');
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'getAddress']);
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
     Route::post('/purchase', [PurchaseController::class, 'store']);
 
     Route::get('/mypage', [UserController::class, 'getMypage']);

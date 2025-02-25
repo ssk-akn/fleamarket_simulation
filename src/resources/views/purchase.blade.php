@@ -68,6 +68,11 @@
                     </select>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                 </form>
+                @error('payment')
+                <p class="error">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
         </div>
         <div class="item-destination">
@@ -86,6 +91,16 @@
                         {{ session('new_building', $user->building) }}
                     </div>
                 </div>
+                @error('postcode')
+                <p class="error">
+                    {{ $message }}
+                </p>
+                @enderror
+                @error('address')
+                <p class="error">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
             <div class="item-destination__change">
                 <a href="/purchase/address/{{ $item->id }}">変更する</a>
