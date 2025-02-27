@@ -57,7 +57,7 @@
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
                 @if ($item->order)
-                <p class="sold">sold</p>
+                <p class="sold">Sold</p>
                 @endif
             </div>
         </a>
