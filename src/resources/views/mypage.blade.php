@@ -69,6 +69,9 @@
             </div>
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
+                @if ($item->order)
+                <p class="sold">Sold</p>
+                @endif
             </div>
         </a>
     </div>
@@ -82,6 +85,9 @@
             </div>
             <div class="content-item">
                 <p class="item-name">{{ $item->name }}</p>
+                @if ($item->order)
+                <p class="sold">Sold</p>
+                @endif
             </div>
         </a>
     </div>

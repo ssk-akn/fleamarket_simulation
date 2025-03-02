@@ -44,7 +44,7 @@
         <a href="{{ url('/') }}" class="{{ request('page', 'all') === 'all' ? 'active' : 'passive' }}">おすすめ</a>
     </div>
     <div class="mylist-button">
-        <a href="{{ url('/?page=mylist') }}" class="{{ request('page') === 'mylist' ? 'active' : 'passive' }}">マイリスト</a>
+        <a href="{{ url('/?page=mylist&keyword=' . request('keyword')) }}" class="{{ request('page') === 'mylist' ? 'active' : 'passive' }}">マイリスト</a>
     </div>
 </div>
 <div class="items-wrap">

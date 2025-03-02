@@ -98,7 +98,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function logged_in_user_does_nat_see_their_own_items_in_all_items_view()
+    public function hidden_own_items()
     {
         $user = User::create([
             'name' => 'User One',

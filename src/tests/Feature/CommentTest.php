@@ -8,9 +8,9 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Condition;
-use App\Models\Order;
+use App\Models\Comment;
 
-class MyListTest extends TestCase
+class CommentTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -19,54 +19,7 @@ class MyListTest extends TestCase
      * @return void
      */
     /** @test */
-    public function only_items_liked_by_user_display()
-    {
-        $user1 = User::create([
-            'name' => 'User One',
-            'email' => 'user1@example.com',
-            'password' => bcrypt('password')
-        ]);
-        $user2 = User::create([
-            'name' => 'User Two',
-            'email' => 'user2@example.com',
-            'password' => bcrypt('password')
-        ]);
-
-        $condition = Condition::create([
-            'condition' => 'good'
-        ]);
-
-        $likeItem = Item::create([
-            'name' => 'Like Item',
-            'user_id' => $user2->id,
-            'condition_id' => $condition->id,
-            'brand' => 'none',
-            'price' => 123,
-            'description' => 'example',
-            'image' => 'dummy1.png'
-        ]);
-
-        $unlikeItem = Item::create([
-            'name' => 'Unlike Item',
-            'user_id' => $user2->id,
-            'condition_id' => $condition->id,
-            'brand' => 'none',
-            'price' => 123,
-            'description' => 'example',
-            'image' => 'dummy2.png'
-        ]);
-
-        $user1->likedItems()->attach($likeItem->id);
-
-        $response = $this->actingAs($user1)->get('/?page=mylist');
-
-        $response->assertStatus(200);
-        $response->assertSee('Like Item');
-        $response->assertDontSee('Unlike Item');
-    }
-
-    /** @test */
-    public function purchased_items_are_displayed_as_sold()
+    public function user_can_comment()
     {
         $user1 = User::create([
             'name' => 'User One',
@@ -84,62 +37,26 @@ class MyListTest extends TestCase
         ]);
 
         $item = Item::create([
-            'name' => 'Purchased Item',
+            'name' => 'Item One',
             'user_id' => $user2->id,
             'condition_id' => $condition->id,
             'brand' => 'none',
-            'price' => 123,
-            'description' => 'example',
+            'price' => 999,
+            'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
 
-        Order::create([
-            'user_id' => $user1->id,
-            'item_id' => $item->id,
-            'payment' => 'カード支払い',
-            'postcode' => 1234567,
-            'address' => 'example'
+        $this->actingAs($user1)->post('/item/' . $item->id . '/comment', [
+            'comment' => 'What color is it?'
         ]);
 
-        $response = $this->actingAs($user1)->get('/mypage?page=buy');
-
-        $response->assertStatus(200);
-        $response->assertSee('Sold');
+        $response = $this->get('/item/' . $item->id);
+        $response->assertSee('What color is it?');
+        $response->assertSee(1);
     }
 
     /** @test */
-    public function hidden_own_items_on_my_list()
-    {
-        $user = User::create([
-            'name' => 'User One',
-            'email' => 'user@example.com',
-            'password' => bcrypt('password')
-        ]);
-
-        $condition = Condition::create([
-            'condition' => 'good'
-        ]);
-
-        $item = Item::create([
-            'name' => 'My Item',
-            'user_id' => $user->id,
-            'condition_id' => $condition->id,
-            'brand' => 'none',
-            'price' => 123,
-            'description' => 'example',
-            'image' => 'dummy.png'
-        ]);
-
-        $user->likedItems()->attach($item->id);
-
-        $response = $this->actingAs($user)->get('/?page=mylist');
-
-        $response->assertStatus(200);
-        $response->assertDontSee('My Item');
-    }
-
-    /** @test */
-    public function guest_sees_no_items()
+    public function guest_cannot_comment()
     {
         $user1 = User::create([
             'name' => 'User One',
@@ -157,20 +74,87 @@ class MyListTest extends TestCase
         ]);
 
         $item = Item::create([
-            'name' => 'Item',
+            'name' => 'Item One',
             'user_id' => $user2->id,
             'condition_id' => $condition->id,
             'brand' => 'none',
-            'price' => 123,
-            'description' => 'example',
-            'image' => 'dummy1.png'
+            'price' => 999,
+            'description' => 'Item is funny.',
+            'image' => 'dummy.png'
         ]);
 
-        $user1->likedItems()->attach($item->id);
+        $response = $this->post('/item/' . $item->id . '/comment', [
+            'comment' => 'What color is it?'
+        ]);
+        $response->assertRedirect('/login');
+    }
 
-        $response = $this->get('/?page=mylist');
+    /** @test */
+    public function comment_is_required()
+    {
+        $user1 = User::create([
+            'name' => 'User One',
+            'email' => 'user1@example.com',
+            'password' => bcrypt('password')
+        ]);
+        $user2 = User::create([
+            'name' => 'User Two',
+            'email' => 'user2@example.com',
+            'password' => bcrypt('password')
+        ]);
 
-        $response->assertStatus(200);
-        $response->assertDontSee('Item');
+        $condition = Condition::create([
+            'condition' => 'good'
+        ]);
+
+        $item = Item::create([
+            'name' => 'Item One',
+            'user_id' => $user2->id,
+            'condition_id' => $condition->id,
+            'brand' => 'none',
+            'price' => 999,
+            'description' => 'Item is funny.',
+            'image' => 'dummy.png'
+        ]);
+
+        $response = $this->actingAs($user1)->post('/item/' . $item->id . '/comment', [
+            // 'comment' => 'What color is it?'
+        ]);
+        $response->assertSessionHasErrors(['comment']);
+    }
+
+    /** @test */
+    public function comment_is_up_to_255_character()
+    {
+        $user1 = User::create([
+            'name' => 'User One',
+            'email' => 'user1@example.com',
+            'password' => bcrypt('password')
+        ]);
+        $user2 = User::create([
+            'name' => 'User Two',
+            'email' => 'user2@example.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $condition = Condition::create([
+            'condition' => 'good'
+        ]);
+
+        $item = Item::create([
+            'name' => 'Item One',
+            'user_id' => $user2->id,
+            'condition_id' => $condition->id,
+            'brand' => 'none',
+            'price' => 999,
+            'description' => 'Item is funny.',
+            'image' => 'dummy.png'
+        ]);
+
+        $longComment = str_repeat('a', 256);
+        $response = $this->actingAs($user1)->post('/item/' . $item->id . '/comment', [
+            'comment' => $longComment
+        ]);
+        $response->assertSessionHasErrors(['comment']);
     }
 }

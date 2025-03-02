@@ -28,7 +28,8 @@ class ItemController extends Controller
         $itemQuery = Item::with('order');
 
         if ($page === 'mylist' && $currentUserId) {
-            $itemQuery = Auth::user()->likedItems()->with('order');
+            $itemQuery = Auth::user()->likedItems()->with('order')
+                ->where('items.user_id', '!=', $currentUserId);
         } else {
             if ($currentUserId) {
                 $itemQuery->where('user_id', '!=', $currentUserId);
