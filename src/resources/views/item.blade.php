@@ -134,11 +134,11 @@
                         商品へのコメント
                     </div>
                     <textarea name="comment" class="item-comments__text"></textarea>
-                    <div class="error">
-                        @error('comment')
+                    @error('comment')
+                    <p class="error">
                         {{ $message }}
-                        @enderror
-                    </div>
+                    </p>
+                    @enderror
                 </div>
                 <div class="item-comments__button">
                     <button class="item-comments__button-submit" type="submit">
