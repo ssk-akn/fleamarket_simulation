@@ -34,9 +34,9 @@ php artisan db:seedphp artisan storage:link
 php artisan storage:link
 ```
 ## 使用技術(実行環境)
-・PHP8.3.0
-・Laravel8.83.29
-・MySQL8.0.26
+・PHP8.3.0  
+・Laravel8.83.29  
+・MySQL8.0.26  
 ## テーブル設計
 
 ![スクリーンショット (8)](https://github.com/user-attachments/assets/17087195-a94d-4540-a74e-27248ff6e5a6)
@@ -49,6 +49,7 @@ php artisan storage:link
 ![スクリーンショット (14)](https://github.com/user-attachments/assets/a2370958-fa6e-427c-b1c0-27f66cc02ace)
 
 
-## URL
-・開発環境：http://localhost/
+## 開発環境
+・商品一覧画面：http://localhost/  
+・会員登録：http://localhost/register  
 ・phpMyAdmin:：http://localhost:8080/
