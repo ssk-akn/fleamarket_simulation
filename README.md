@@ -1,7 +1,7 @@
 # フリマアプリ
 ## 環境構築
 ### Dockerビルド
-1. git clone git@github.com:差し替えます
+1. git clone git@github.com:ssk-akn/fleamarket_simulation.git
 2. DockerDesktopアプリを立ち上げる
 3. docker-compose up -d --build
 ### Laravel環境構築
@@ -35,7 +35,7 @@ php artisan storage:link
 ```
 ## 使用技術(実行環境)
 ・PHP8.3.0
-・Laravel8.83.27
+・Laravel8.83.29
 ・MySQL8.0.26
 ## テーブル設計
 
