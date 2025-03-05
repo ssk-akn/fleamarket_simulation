@@ -12,6 +12,7 @@
     background: transparent;
     cursor: pointer;
 }
+
 .search-button img {
     width: 45px;
 }
@@ -109,7 +110,7 @@
 
 .item-contents {
     width: 20%;
-    margin: 0 2%;
+    margin: 10px 2%;
 }
 
 .item-contents a {

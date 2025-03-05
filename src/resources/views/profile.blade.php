@@ -60,20 +60,40 @@
                 画像を選択する
                 <input type="file" name="image" id="imageInput" accept="image/*" class="profile-image__input-none">
             </label>
+            @error('image')
+            <p class="error">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
     </div>
     <div class="profile-contents">
         <div class="profile-group">
             <label for="name">ユーザー名</label>
             <input type="text" name="name" id="name" value="{{ $user->name }}">
+            @error('name')
+            <p class="error">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
         <div class="profile-group">
             <label for="postcode">郵便番号</label>
             <input type="text" name="postcode" id="postcode" value="{{ $user->postcode }}">
+            @error('postcode')
+            <p class="error">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
         <div class="profile-group">
             <label for="address">住所</label>
             <input type="text" name="address" id="address" value="{{ $user->address }}">
+            @error('address')
+            <p class="error">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
         <div class="profile-group">
             <label for="building">建物名</label>

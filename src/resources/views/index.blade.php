@@ -8,7 +8,7 @@
 <div class="header__search-form">
     <form action="/" method="get">
         @csrf
-        <input class="search-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
+        <input class="search-input" type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
         <input type="hidden" name="page" value="{{ request('page', 'all') }}">
         <button class="search-button" type="submit">
             <img src="{{ asset('image/search.png') }}" alt="検索">

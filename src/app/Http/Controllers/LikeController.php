@@ -27,6 +27,6 @@ class LikeController extends Controller
             $user->likedItems()->detach($item_id);
         }
 
-        return redirect()->route('item.detail', compact('item_id'));
+        return redirect()->route('item.detail', ['item_id' => $item_id]);
     }
 }

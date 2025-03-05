@@ -52,6 +52,11 @@
                 <input type="file" name="image" id="item-image" class="image-input">
             </label>
         </div>
+        @error('image')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
     </div>
     <div class="item-detail__title">
         商品の詳細
@@ -64,15 +69,25 @@
             <label for="{{ $category->id }}" class="category-label">{{ $category->category }}</label>
             @endforeach
         </div>
+        @error('categories')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
     </div>
     <div class="form-group">
         <label class="form-group__title">商品の状態</label>
-        <select name="condition" class="condition-select">
+        <select name="condition_id" class="condition-select">
             <option value="">選択してください</option>
             @foreach($conditions as $condition)
             <option value="{{ $condition->id }}">{{ $condition->condition }}</option>
             @endforeach
         </select>
+        @error('condition_id')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
     </div>
     <div class="item-description__title">
         商品名と説明
@@ -80,6 +95,11 @@
     <div class="form-group">
         <label class="form-group__title">商品名</label>
         <input type="text" name="name" class="input">
+        @error('name')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
     </div>
     <div class="form-group">
         <label class="form-group__title">ブランド名</label>
@@ -88,10 +108,20 @@
     <div class="form-group">
         <label class="form-group__title">商品の説明</label>
         <textarea name="description" class="textarea"></textarea>
+        @error('description')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
     </div>
     <div class="form-group">
         <label class="form-group__title">販売価格</label>
         <input type="text" name="price" class="input">
+        @error('price')
+        <p class="error">
+            {{ $message }}
+        </p>
+        @enderror
     </div>
     <div class="form-button">
         <button class="form-button__submit" type="submit">出品する</button>

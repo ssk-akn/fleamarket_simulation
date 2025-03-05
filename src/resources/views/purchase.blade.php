@@ -110,20 +110,14 @@
     <div class="purchase-confirm">
         <table class="confirm__table">
             <tr class="confirm__row">
-                <th class="confirm__label">
-                    商品代金
-                </th>
+                <th class="confirm__label">商品代金</th>
                 <td class="confirm__date">
-                <span>&yen;</span>{{ number_format($item->price) }}
+                    <span>&yen;</span>{{ number_format($item->price) }}
                 </td>
             </tr>
             <tr class="confirm__row">
-                <th class="confirm__label">
-                    支払い方法
-                </th>
-                <td class="confirm__date">
-                    {{ $payment }}
-                </td>
+                <th class="confirm__label">支払い方法</th>
+                <td class="confirm__date">{{ $payment }}</td>
             </tr>
         </table>
         <form action="/purchase" method="POST" class="purchase-form">

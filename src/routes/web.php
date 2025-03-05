@@ -36,4 +36,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [SellController::class, 'getSell']);
     Route::post('/sell',[SellController::class, 'store']);
 });
-

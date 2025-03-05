@@ -25,7 +25,7 @@ class SellController extends Controller
 
         $item = new Item();
         $item->user_id = $userId;
-        $item->condition_id = $request->condition;
+        $item->condition_id = $request->condition_id;
         $item->name = $request->name;
         $item->brand = $request->brand;
         $item->price = $request->price;

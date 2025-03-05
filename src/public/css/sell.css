@@ -165,6 +165,11 @@
     color: #FFFFFF;
 }
 
+.error {
+    font-size: 15px;
+    color: #f51818;
+}
+
 @media screen and (max-width: 850px) {
     .search-input {
         width: 230px;

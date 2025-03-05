@@ -114,8 +114,6 @@
     color: #FF5555;
 }
 
-
-
 .profile-group label,
 .profile-group input {
     font-size: 24px;
@@ -139,6 +137,11 @@
     font-size: 26px;
     font-weight: bold;
     color: #FFFFFF;
+}
+
+.error {
+    font-size: 16px;
+    color: #f51818;
 }
 
 @media screen and (max-width: 850px) {

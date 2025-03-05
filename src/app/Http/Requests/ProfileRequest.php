@@ -24,13 +24,19 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'mimes:jpeg,jpg,png',
+            'image' => 'mimes:jpeg,png',
+            'name' => 'required',
+            'postcode' => 'required',
+            'address' => 'required',
         ];
     }
     public function messages()
     {
         return [
             'image.mimes' => '画像は拡張子が.jpegまたは.pngのファイルを選択してください',
+            'name.required' => 'お名前を入力してください',
+            'postcode.required' => '郵便番号を入力してください',
+            'address.required' => '住所を入力してください',
         ];
     }
 }
