@@ -1,4 +1,15 @@
 # フリマアプリ
+## プロジェクトの目的
+- 学習を目的とした、アイテムの出品と購入を行うためのフリマアプリです。
+## 主要機能
+- ユーザー登録・ログイン（Laravel Fortifyを使用）
+- 商品の一覧画面、詳細画面は未認証ユーザーも閲覧可能
+- ユーザーのみの機能
+  - 商品に「いいね」をしてマイリストへ追加
+  - 商品に対するコメントを投稿
+  - 商品を購入
+  - 商品を出品
+  - マイページにてプロフィールを確認、編集
 ## 環境構築
 ### Dockerビルド
 1. git clone git@github.com:ssk-akn/fleamarket_simulation.git
@@ -33,11 +44,17 @@ php artisan db:seedphp artisan storage:link
 ```
 php artisan storage:link
 ```
-## 使用技術(実行環境)
-- PHP8.3.0
-- Laravel8.83.29
-- MySQL8.0.26
-- nginx1.21.1
+## 開発環境
+- 商品一覧画面：http://localhost/
+- 会員登録：http://localhost/register
+- phpMyAdmin:：http://localhost:8080/
+## ログイン情報
+- 管理者
+  - Email: admin@example.com
+  - Password: password123
+- 一般ユーザー
+  - Email: user@example.com
+  - Password: password123
 ## テーブル設計
 
 ![スクリーンショット (8)](https://github.com/user-attachments/assets/17087195-a94d-4540-a74e-27248ff6e5a6)
@@ -50,7 +67,10 @@ php artisan storage:link
 ![スクリーンショット (14)](https://github.com/user-attachments/assets/a2370958-fa6e-427c-b1c0-27f66cc02ace)
 
 
-## 開発環境
-- 商品一覧画面：http://localhost/
-- 会員登録：http://localhost/register
-- phpMyAdmin:：http://localhost:8080/
+
+## 使用技術(実行環境)
+- PHP8.3.0
+- Laravel8.83.29
+- MySQL8.0.26
+- nginx1.21.1
+- Docker
