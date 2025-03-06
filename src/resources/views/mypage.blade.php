@@ -40,7 +40,7 @@
 @section('content')
 <div class="profile">
     <div class="image-circle">
-        <img class="user-image" src="{{ asset('storage/' . $user->image) }}" alt="画像">
+        <img class="user-image" src="{{ asset('storage/' . $user->image) }}" alt="">
     </div>
     <div class="user-name">
         {{ $user->name }}

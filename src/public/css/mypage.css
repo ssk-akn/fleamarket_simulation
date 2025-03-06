@@ -53,9 +53,8 @@
 }
 
 .profile {
-    width: 60%;
-    margin: 0 auto;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -199,10 +198,6 @@
     .sold {
         padding: 5px;
         font-size: 12px;
-    }
-
-    .profile {
-        width: 80%;
     }
 
     .user-image {
