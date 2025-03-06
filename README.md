@@ -57,7 +57,7 @@ php artisan storage:link
   - Password: password123
 ## テーブル設計
 
-![スクリーンショット (18)](https://github.com/user-attachments/assets/9a0a582b-4a0f-4c01-a52e-5dd474c05633)
+![スクリーンショット (19)](https://github.com/user-attachments/assets/cc660da8-1829-4002-a1f7-8788e2a5422f)
 ![スクリーンショット (9)](https://github.com/user-attachments/assets/cc86a7f4-a1c9-4735-98fe-9a2fa207e550)
 ![スクリーンショット (10)](https://github.com/user-attachments/assets/cb0d6056-5d68-4ea1-9fad-9d46976986a7)
 
