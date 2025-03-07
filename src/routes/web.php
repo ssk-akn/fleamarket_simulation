@@ -21,7 +21,7 @@ use App\Http\Controllers\SellController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('item.detail');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::post('/item/{item_id}/like', [LikeController::class, 'store'])->name('item.store');
     Route::post('/item/{item_id}/unlike', [LikeController::class, 'destroy'])->name('item.destroy');
     Route::post('/item/{item_id}/comment', [CommentController::class, 'store']);
