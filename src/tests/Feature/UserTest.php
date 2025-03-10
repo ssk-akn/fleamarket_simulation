@@ -25,6 +25,7 @@ class UserTest extends TestCase
             'name' => 'User One',
             'email' => 'user1@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
             'postcode' => 1234567,
             'address' => '東京都新宿区',
             'image' => 'image.png'
@@ -32,7 +33,8 @@ class UserTest extends TestCase
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -66,6 +68,8 @@ class UserTest extends TestCase
             'address' => $user1->address
         ]);
 
+        $user1->markEmailAsVerified();
+
         $response = $this->actingAs($user1)->get('/mypage');
         $response->assertSee(asset('storage/image.png'));
         $response->assertSee('User One');
@@ -82,16 +86,19 @@ class UserTest extends TestCase
     /** @test */
     public function users_initial_value_display()
     {
-        $user1 = User::create([
+        $user = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
             'postcode' => 1234567,
             'address' => '東京都新宿区',
             'image' => 'image.png'
         ]);
 
-        $response = $this->actingAs($user1)->get('/mypage/profile');
+        $user->markEmailAsVerified();
+
+        $response = $this->actingAs($user)->get('/mypage/profile');
         $response->assertSee(asset('storage/image.png'));
         $response->assertSee('User One');
         $response->assertSee('1234567');

@@ -24,12 +24,14 @@ class CommentTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -45,6 +47,8 @@ class CommentTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $this->actingAs($user1)->post('/item/' . $item->id . '/comment', [
             'comment' => 'What color is it?'
@@ -61,12 +65,14 @@ class CommentTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -82,6 +88,8 @@ class CommentTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $response = $this->post('/item/' . $item->id . '/comment', [
             'comment' => 'What color is it?'
@@ -95,12 +103,14 @@ class CommentTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -116,6 +126,8 @@ class CommentTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $response = $this->actingAs($user1)->post('/item/' . $item->id . '/comment', [
             // 'comment' => 'What color is it?'
@@ -129,12 +141,14 @@ class CommentTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -150,6 +164,8 @@ class CommentTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $longComment = str_repeat('a', 256);
         $response = $this->actingAs($user1)->post('/item/' . $item->id . '/comment', [

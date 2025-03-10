@@ -25,14 +25,18 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/item/{item_id}/like', [LikeController::class, 'store'])->name('item.store');
     Route::post('/item/{item_id}/unlike', [LikeController::class, 'destroy'])->name('item.destroy');
     Route::post('/item/{item_id}/comment', [CommentController::class, 'store']);
+
+    Route::get('/purchase/success', [PurchaseController::class, 'checkoutSuccess'])->name('purchase.success');
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'getPurchase'])->name('purchase.get');
+    Route::post('/purchase/checkout', [PurchaseController::class, 'createCheckoutSession']);
     Route::post('/purchase/update-payment', [PurchaseController::class, 'updatePayment'])->name('purchase.payment');
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'getAddress']);
     Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
-    Route::post('/purchase', [PurchaseController::class, 'store']);
+
     Route::get('/mypage', [UserController::class, 'getMypage']);
     Route::get('/mypage/profile', [UserController::class, 'getProfile']);
     Route::post('/mypage/profile', [UserController::class, 'update']);
+
     Route::get('/sell', [SellController::class, 'getSell']);
     Route::post('/sell',[SellController::class, 'store']);
 });

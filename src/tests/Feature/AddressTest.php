@@ -9,6 +9,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Condition;
+use Mockery;
 
 class AddressTest extends TestCase
 {
@@ -25,13 +26,15 @@ class AddressTest extends TestCase
             'name' => 'User One',
             'email' => 'user1@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
             'postcode' => 1234567,
-            'address' => '北海道札幌市'
+            'address' => '北海道札幌市',
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -47,6 +50,8 @@ class AddressTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $response = $this->followingRedirects()->actingAs($user1)->post('/purchase/address/' . $item->id, [
             'postcode' => 9876543,
@@ -63,13 +68,15 @@ class AddressTest extends TestCase
             'name' => 'User One',
             'email' => 'user1@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
             'postcode' => 1234567,
             'address' => '北海道札幌市'
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -86,17 +93,46 @@ class AddressTest extends TestCase
             'image' => 'dummy.png'
         ]);
 
+        $user1->markEmailAsVerified();
+
         $this->followingRedirects()->actingAs($user1)->post('/purchase/address/' . $item->id, [
             'postcode' => 9876543,
             'address' => '沖縄県那覇市'
         ]);
-        $this->actingAs($user1)->post('/purchase',[
+
+        $fakeSession = (object)[
+            'url' => 'http://fake-checkout-session-url.com',
+            'metadata' => (object)[
+                'user_id' => $user1->id,
+                'item_id' => $item->id,
+                'postcode' => session('new_postcode'),
+                'address' => session('new_address'),
+                'building' => '',
+            ],
+            'payment_method_types' => ['card'],
+        ];
+
+        $mock = Mockery::mock('alias:\Stripe\Checkout\Session');
+        $mock->shouldReceive('create')
+            ->andReturn($fakeSession);
+        $mock->shouldReceive('retrieve')
+            ->with('fake_session_id')
+            ->andReturn($fakeSession);
+
+        $checkoutResponse = $this->actingAs($user1)->post('/purchase/checkout', [
             'item_id' => $item->id,
             'payment' => 'カード支払い',
             'postcode' => session('new_postcode'),
             'address' => session('new_address'),
+            'building' => '',
         ]);
-        $response = $this->assertDatabaseHas('orders', [
+        $checkoutResponse->assertRedirect();
+
+        $successResponse = $this->actingAs($user1)
+            ->get('/purchase/success?session_id=fake_session_id');
+        $successResponse->assertRedirect('/mypage');
+
+        $this->assertDatabaseHas('orders', [
             'item_id' => $item->id,
             'user_id' =>$user1->id,
             'postcode' => 9876543,

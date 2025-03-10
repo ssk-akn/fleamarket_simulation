@@ -24,12 +24,14 @@ class MyListTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -56,6 +58,7 @@ class MyListTest extends TestCase
             'image' => 'dummy2.png'
         ]);
 
+        $user1->markEmailAsVerified();
         $user1->likedItems()->attach($likeItem->id);
 
         $response = $this->actingAs($user1)->get('/?page=mylist');
@@ -71,12 +74,14 @@ class MyListTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -101,6 +106,8 @@ class MyListTest extends TestCase
             'address' => 'example'
         ]);
 
+        $user1->markEmailAsVerified();
+
         $response = $this->actingAs($user1)->get('/mypage?page=buy');
 
         $response->assertStatus(200);
@@ -113,7 +120,8 @@ class MyListTest extends TestCase
         $user = User::create([
             'name' => 'User One',
             'email' => 'user@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -130,6 +138,7 @@ class MyListTest extends TestCase
             'image' => 'dummy.png'
         ]);
 
+        $user->markEmailAsVerified();
         $user->likedItems()->attach($item->id);
 
         $response = $this->actingAs($user)->get('/?page=mylist');
@@ -144,12 +153,14 @@ class MyListTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -165,6 +176,8 @@ class MyListTest extends TestCase
             'description' => 'example',
             'image' => 'dummy1.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $user1->likedItems()->attach($item->id);
 

@@ -26,12 +26,14 @@ class DetailTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -89,7 +91,8 @@ class DetailTest extends TestCase
         $user = User::create([
             'name' => 'User One',
             'email' => 'user@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([

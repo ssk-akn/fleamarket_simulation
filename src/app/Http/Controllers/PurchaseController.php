@@ -8,6 +8,8 @@ use App\Http\Requests\AddressRequest;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Order;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
@@ -46,18 +48,66 @@ class PurchaseController extends Controller
         return redirect()->route('purchase.get', ['item_id' => $item_id]);
     }
 
-    public function store(PurchaseRequest $request)
+
+
+
+    public function createCheckoutSession(PurchaseRequest $request)
     {
-        $item = Item::find($request->item_id);
+        $user = Auth::user();
+        $item = Item::findOrFail($request->item_id);
+
+        $paymentMethod = $request->payment;
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $paymentType = $paymentMethod === 'カード支払い' ? 'card' : 'konbini';
+
+        $session = Session::create([
+            'payment_method_types' => [$paymentType],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => ['name' => $item->name],
+                    'unit_amount' => $item->price,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => 'http://localhost/purchase/success' . '?session_id={CHECKOUT_SESSION_ID}',
+            'metadata' => [
+                'user_id' => $user->id,
+                'item_id' => $item->id,
+                'postcode' => $request->postcode,
+                'address' => $request->address,
+                'building' => $request->building,
+            ]
+        ]);
+
+        return redirect($session->url);
+    }
+
+    public function checkoutSuccess(Request $request)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $session = Session::retrieve($request->query('session_id'));
+
+        $userId = $session->metadata->user_id;
+        $itemId = $session->metadata->item_id;
+        $postcode = $session->metadata->postcode;
+        $address = $session->metadata->address;
+        $building = $session->metadata->building;
+        $paymentMethod = $session->payment_method_types[0];
 
         Order::create([
-            'item_id' => $item->id,
-            'user_id' => Auth::id(),
-            'payment' => $request->payment,
-            'postcode' => session('new_postcode', Auth::user()->postcode),
-            'address' => session('new_address', Auth::user()->address),
-            'building' => session('new_building', Auth::user()->building) ?? null,
+            'item_id' => $itemId,
+            'user_id' => $userId,
+            'payment' => $paymentMethod,
+            'postcode' => $postcode,
+            'address' => $address,
+            'building' => $building,
         ]);
+
         return redirect('/mypage');
     }
 }

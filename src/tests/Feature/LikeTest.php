@@ -23,12 +23,14 @@ class LikeTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -44,6 +46,8 @@ class LikeTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $this->actingAs($user1)->get('/item/' . $item->id);
 
@@ -63,12 +67,14 @@ class LikeTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -84,6 +90,8 @@ class LikeTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $response = $this->actingAs($user1)->get('/item/' . $item->id);
         $response->assertStatus(200);
@@ -102,12 +110,14 @@ class LikeTest extends TestCase
         $user1 = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -123,6 +133,8 @@ class LikeTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $this->actingAs($user1)->get('/item/' . $item->id);
         $this->actingAs($user1)->post('/item/' . $item->id . '/like');

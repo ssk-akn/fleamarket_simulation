@@ -120,7 +120,7 @@
                 <td class="confirm__date">{{ $payment }}</td>
             </tr>
         </table>
-        <form action="/purchase" method="POST" class="purchase-form">
+        <form action="/purchase/checkout" method="POST" class="purchase-form">
             @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <input type="hidden" name="payment" value="{{ $payment }}">

@@ -24,7 +24,8 @@ class SearchTest extends TestCase
         $user = User::create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -59,6 +60,8 @@ class SearchTest extends TestCase
             'image' => 'dummy3.jpg'
         ]);
 
+        $user->markEmailAsVerified();
+
         $response = $this->get('/?keyword=Shirt');
 
         $response->assertStatus(200);
@@ -73,7 +76,8 @@ class SearchTest extends TestCase
         $user = User::create([
             'name' => 'User One',
             'email' => 'user1@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
         $owner = User::create([
             'name' => 'User Two',
@@ -112,6 +116,8 @@ class SearchTest extends TestCase
             'description' => 'example',
             'image' => 'dummy3.jpg'
         ]);
+
+        $user->markEmailAsVerified();
 
         $globalResponse = $this->get('/?keyword=Shirt');
         $globalResponse->assertStatus(200);

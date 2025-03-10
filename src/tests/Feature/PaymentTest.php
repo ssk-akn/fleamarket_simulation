@@ -24,13 +24,15 @@ class PaymentTest extends TestCase
             'name' => 'User One',
             'email' => 'user1@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
             'postcode' => 1234567,
-            'address' => '北海道札幌市'
+            'address' => '北海道札幌市',
         ]);
         $user2 = User::create([
             'name' => 'User Two',
             'email' => 'user2@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -46,6 +48,8 @@ class PaymentTest extends TestCase
             'description' => 'Item is funny.',
             'image' => 'dummy.png'
         ]);
+
+        $user1->markEmailAsVerified();
 
         $this->actingAs($user1)->get('/purchase/' . $item->id);
         $response = $this->followingRedirects()->actingAs($user1)->post('/purchase/update-payment', [

@@ -18,7 +18,11 @@ class LogoutTest extends TestCase
     /** @test */
     public function authenticated_user_can_logout()
     {
-        $user = User::factory()->create();
+        $user = User::create([
+            'name' => 'User One',
+            'email' => 'user@example.com',
+            'password' => bcrypt('password'),
+        ]);
 
         $this->actingAs($user);
 

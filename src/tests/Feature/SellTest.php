@@ -26,6 +26,7 @@ class SellTest extends TestCase
             'name' => 'User One',
             'email' => 'user@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $condition = Condition::create([
@@ -35,6 +36,8 @@ class SellTest extends TestCase
         $category = Category::create([
             'category' => 'kids'
         ]);
+
+        $user->markEmailAsVerified();
 
         $this->actingAs($user)->get('/sell');
 
