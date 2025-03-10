@@ -3,6 +3,7 @@
 - 学習を目的とした、アイテムの出品と購入を行うためのフリマアプリです。
 ## 主要機能
 - ユーザー登録・ログイン（Laravel Fortifyを使用）
+- ユーザーメール認証（mailhogを使用）
 - 商品の一覧画面、詳細画面は未認証ユーザーも閲覧可能
 - ユーザーのみの機能
   - 商品に「いいね」をしてマイリストへ追加
@@ -47,7 +48,8 @@ php artisan storage:link
 ## 開発環境
 - 商品一覧画面：http://localhost/
 - 会員登録：http://localhost/register
-- phpMyAdmin:：http://localhost:8080/
+- mailhog：http://localhost:8025/
+- phpMyAdmin：http://localhost:8080/
 ## ログイン情報
 - 管理者
   - Email: admin@example.com
