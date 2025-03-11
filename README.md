@@ -8,7 +8,7 @@
 - ユーザーのみの機能
   - 商品に「いいね」をしてマイリストへ追加
   - 商品に対するコメントを投稿
-  - 商品を購入
+  - 商品を購入（決済はStripeを使用）
   - 商品を出品
   - マイページにてプロフィールを確認、編集
 ## 環境構築
@@ -45,6 +45,22 @@ php artisan db:seedphp artisan storage:link
 ```
 php artisan storage:link
 ```
+9. Stripeパッケージの導入
+```
+composer require stripe/stripe-php
+```
+10. .envにStripe用の環境変数を追加
+```
+STRIPE_KEY=your_stripe_public_key
+STRIPE_SECRET=your_stripe_secret_key
+```
+11. config/services.phpにStripeの設定を追加
+```
+'stripe' => [
+    'key' => env('STRIPE_KEY'),
+    'secret' => env('STRIPE_SECRET'),
+],
+```
 ## 開発環境
 - 商品一覧画面：http://localhost/
 - 会員登録：http://localhost/register
@@ -57,6 +73,13 @@ php artisan storage:link
 - 一般ユーザー
   - Email: user@example.com
   - Password: password123
+## 決済テスト用カード情報
+- クレジットカード番号
+  - 4242 4242 4242 4242
+- 有効期限
+  -有効な将来の日付を使用
+- セキュリティコード
+  - 任意の 3 桁の数字
 ## テーブル設計
 
 ![スクリーンショット (19)](https://github.com/user-attachments/assets/cc660da8-1829-4002-a1f7-8788e2a5422f)
