@@ -89,7 +89,8 @@ STRIPE_SECRET=your_stripe_secret_key
 
 ## ER図
 
-![スクリーンショット (14)](https://github.com/user-attachments/assets/a2370958-fa6e-427c-b1c0-27f66cc02ace)
+![スクリーンショット (1)](https://github.com/user-attachments/assets/03b207bd-cbc7-4edd-9361-bdf191f74d1a)
+
 
 
 
