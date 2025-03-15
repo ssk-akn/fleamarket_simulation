@@ -117,7 +117,9 @@
             @foreach ($comments as $comment)
             <div class="item-comments__table">
                 <div class="item-comments__user">
-                    <img src="{{ asset('storage/' . $comment->user->image ) }}" alt="">
+                    <div class="image-circle">
+                        <img class="user-image" src="{{ asset('storage/' . $comment->user->image ) }}">
+                    </div>
                     <div class="item-comments__user-name">
                         {{ $comment->user->name }}
                     </div>

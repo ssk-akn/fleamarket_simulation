@@ -50,6 +50,6 @@ class UserController extends Controller
         $user->building = $request->building;
         $user->save();
 
-        return redirect('/mypage/profile');
+        return redirect('/mypage');
     }
 }
