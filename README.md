@@ -39,7 +39,7 @@ php artisan migrate
 ```
 7. シーディングの実行
 ```
-php artisan db:seedphp artisan storage:link
+php artisan db:seed
 ```
 8. シンボリックリンク作成
 ```
