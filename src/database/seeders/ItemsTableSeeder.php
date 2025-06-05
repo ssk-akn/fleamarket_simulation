@@ -15,7 +15,7 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
         $clockId = DB::table('items')->insertGetId([
-            'user_id' => 2,
+            'user_id' => 1,
             'condition_id' => 1,
             'name' => '腕時計',
             'price' => 15000,
@@ -27,7 +27,7 @@ class ItemsTableSeeder extends Seeder
             ['item_id' => $clockId, 'category_id' => 12],
         ]);
         $diskId = DB::table('items')->insertGetId([
-            'user_id' => 2,
+            'user_id' => 1,
             'condition_id' => 2,
             'name' => 'HDD',
             'price' => 5000,
@@ -38,7 +38,7 @@ class ItemsTableSeeder extends Seeder
             ['item_id' => $diskId, 'category_id' => 2],
         ]);
         $onionId = DB::table('items')->insertGetId([
-            'user_id' => 2,
+            'user_id' => 1,
             'condition_id' => 3,
             'name' => '玉ねぎ3束',
             'price' => 300,
@@ -49,7 +49,7 @@ class ItemsTableSeeder extends Seeder
             ['item_id' => $onionId, 'category_id' => 10],
         ]);
         $shoesId = DB::table('items')->insertGetId([
-            'user_id' => 2,
+            'user_id' => 1,
             'condition_id' => 4,
             'name' => '革靴',
             'price' => 4000,
@@ -61,7 +61,7 @@ class ItemsTableSeeder extends Seeder
             ['item_id' => $shoesId, 'category_id' => 5],
         ]);
         $pcId = DB::table('items')->insertGetId([
-            'user_id' => 2,
+            'user_id' => 1,
             'condition_id' => 1,
             'name' => 'ノートPC',
             'price' => 45000,
