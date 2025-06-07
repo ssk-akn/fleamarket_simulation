@@ -7,6 +7,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,9 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('/sell', [SellController::class, 'getSell']);
     Route::post('/sell',[SellController::class, 'store']);
+
+    Route::get('/transaction/{item_id}', [TransactionController::class, 'getTransaction'])->name('transaction.get');
+    Route::post('/transaction/{item_id}', [TransactionController::class, 'store']);
+    Route::patch('/transaction/update/{message_id}', [TransactionController::class, 'update']);
+    Route::post('/transaction/delete/{message_id}', [TransactionController::class, 'destroy']);
 });
