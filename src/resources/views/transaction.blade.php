@@ -12,9 +12,14 @@
         <div class="trading-screen__top">
             <img src="{{ asset('storage/image/' . $partner->image) }}" alt="アイコン" class="trading-screen__top-img">
             <h2 class="trading-screen__title">{{ $partner->name }}さんとの取引画面</h2>
-            <button type="submit" class="trading-screen__top-button">
-                取引を完了する
-            </button>
+            @if ($user->id !== $item->user_id && $order->status === 'pending')
+            <form action="/transaction/complete/{{ $order->id }}" method="POST" class="transaction-completed__form">
+                @csrf
+                <button type="submit" class="transaction-completed__button">
+                    取引を完了する
+                </button>
+            </form>
+            @endif
         </div>
         <div class="item-detail">
             <div class="item-image">
@@ -74,6 +79,26 @@
         </div>
     </div>
 </div>
+<!-- 購入者用 -->
+@if (!$reviewExists && $completed)
+<div class="model-overlay">
+    <div class="model-content">
+        <p class="model-message">取引が完了しました。</p>
+        <form action="/review/{{ $order->id }}" method="post">
+            @csrf
+            <p class="rating-message">今回の取引相手はどうでしたか？</p>
+            <div class="star">
+                @for ($i = 1; $i <= 5; $i++)
+                <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}">
+                <label for="star{{ $i }}">★</label>
+                @endfor
+            </div>
+            <input type="hidden" name="partner_id" value="{{ $partner->id }}">
+            <button type="submit" class="rating-button">送信</button>
+        </form>
+    </div>
+</div>
+@endif
 @endsection
 
 @section('js')

@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/transaction/{item_id}', [TransactionController::class, 'store']);
     Route::patch('/transaction/update/{message_id}', [TransactionController::class, 'update']);
     Route::post('/transaction/delete/{message_id}', [TransactionController::class, 'destroy']);
+
+    Route::post('/transaction/complete/{order_id}', [ReviewController::class, 'complete']);
+    Route::post('/review/{order_id}', [ReviewController::class, 'review']);
 });

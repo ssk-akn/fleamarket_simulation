@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\TransactionMessage;
+use App\Models\TransactionReview;
 use App\Http\Requests\TransactionRequest;
 
 class TransactionController extends Controller
@@ -16,10 +17,24 @@ class TransactionController extends Controller
     {
         $user = Auth::user();
         $item = Item::findOrFail($item_id);
-        $partner = User::findOrFail($item->user_id);
         $order = Order::where('item_id', $item_id)->first();
+
+        if ($user->id === $item->user_id){
+            $partner = User::findOrFail($order->user_id);
+        } else {
+            $partner = User::findOrFail($item->user_id);
+        }
         $messages = TransactionMessage::where('order_id', $order->id)->with('user')->get();
-        return view('transaction', compact('user', 'item', 'partner', 'messages'));
+
+        $reviewExists = TransactionReview::where('order_id', $order->id)
+            ->where('reviewer_id', $user->id)
+            ->exists();
+
+        $completed = $order->status === 'complete';
+
+        return view('transaction', compact(
+            'user', 'item', 'partner', 'messages', 'order', 'reviewExists', 'completed'
+        ));
     }
 
     public function store(TransactionRequest $request, $item_id)

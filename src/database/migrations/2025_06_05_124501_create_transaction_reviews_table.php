@@ -16,8 +16,8 @@ class CreateTransactionReviewsTable extends Migration
         Schema::create('transaction_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('reviewer_id')->constrained()->onDelete('cascade');
-            $table->foreignId('reviewee_id')->constrained()->onDelete('cascade');
+            $table->foreignId('reviewer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('reviewee_id')->constrained('users')->onDelete('cascade');
             $table->unsignedTinyInteger('rating');
             $table->timestamps();
         });
