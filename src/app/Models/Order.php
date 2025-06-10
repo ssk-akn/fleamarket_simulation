@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Item;
+use App\Models\TransactionMessage;
 use App\Models\TransactionReview;
 
 class Order extends Model
@@ -29,6 +30,11 @@ class Order extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(TransactionMessage::class);
     }
 
     public function reviews()

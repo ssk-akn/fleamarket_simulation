@@ -1,0 +1,307 @@
+.transaction {
+    display: flex;
+    width: 100%;
+}
+
+.other-transactions {
+    width: 18%;
+    text-align: center;
+    background: #868686;
+}
+
+.other-transactions h2 {
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+.other-transactions__link {
+    width: 80%;
+    margin: 30px auto;
+    padding: 10px 0;
+    background: #EEEFEB;
+    border-radius: 5px;
+}
+
+.other-transactions__link a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #000000;
+}
+
+.trading-screen {
+    width: 100%;
+}
+
+.trading-screen__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #000000;
+}
+
+.trading-screen__top-item {
+    display: flex;
+    align-items: center;
+}
+
+.user-image,
+.transaction-user__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 80px;
+    object-fit: cover;
+}
+
+.image-circle,
+.transaction-user__image-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    background: #D9D9D9;
+}
+
+.trading-screen__top-item h2 {
+    margin-left: 30px;
+    font-size: 36px;
+}
+
+.transaction-completed__button {
+    padding: 20px;
+    border: none;
+    border-radius: 30px;
+    background: #FF8282;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.item-detail {
+    display: flex;
+    align-items: center;
+    padding: 20px 35px;
+    border-bottom: 1px solid #000000;
+}
+
+.item-image {
+    width: 203px;
+}
+
+.item-image img {
+    width: 100%;
+}
+
+.item-detail__item {
+    margin-left: 35px;
+}
+
+.item-name {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.item-price {
+    font-size: 36px;
+}
+
+.transaction-detail {
+    padding: 20px;
+}
+
+/* 左右調整 */
+.transaction-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.transaction-user {
+    display: flex;
+    align-items: center;
+}
+
+/* 左（相手） */
+.transaction-item.other {
+    align-items: flex-start;
+}
+
+.transaction-item.other .transaction-user {
+    flex-direction: row;
+}
+
+/* 右（自分） */
+.transaction-item.own {
+    align-items: flex-end;
+}
+
+.transaction-item.own .transaction-user {
+    flex-direction: row-reverse;
+}
+
+.transaction-item__form {
+    width: 100%;
+    text-align: right;
+}
+
+.delete-form {
+    display: none;
+}
+/* 以上 */
+
+.transaction-user__image {
+    height: 60px;
+}
+
+.transaction-user__image-circle {
+    width: 60px;
+    height: 60px;
+}
+
+.transaction-user__name {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.transaction-message textarea,
+.partner-message {
+    padding: 10px;
+    width: 45%;
+    border: none;
+    border-radius: 4px;
+    background: #D9D9D9;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.button-submit {
+    margin-left: 15px;
+    border: none;
+    background: none;
+    font-size: 15px;
+    color: #5F5F5F;
+    cursor: pointer;
+}
+
+.transaction-form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.message-input {
+    width: 75%;
+    margin: 10px;
+    padding: 8px;
+    border: 1px solid #5F5F5F;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #7B7B7B;
+}
+
+.image-input {
+    display: none;
+}
+
+.image-input__custom {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    background: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF5555;
+}
+
+.transaction-form__button {
+    width: 8%;
+    border: none;
+    background: none;
+}
+
+.transaction-form__button-img {
+    width: 100%;
+}
+
+/* モーダル */
+.model-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.model-content {
+    background: #FFFDEB;
+    border-radius: 15px;
+    border: 1px solid #000000;
+    width: 40%;
+}
+
+.model-message {
+    padding: 30px;
+    border-bottom: 1px solid #000000;
+    font-size: 35px;
+}
+
+.rating-message {
+    padding: 0 30px;
+    font-size: 20px;
+    color: #868686;
+}
+
+.star {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 10px;
+}
+
+.star input[type="radio"] {
+    display: none;
+}
+
+.star label {
+    font-size: 100px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.star input[type="radio"]:checked ~ label {
+    color: #FFD700;
+}
+
+.star label:hover,
+.star label:hover ~ label {
+    color: #FFD700;
+}
+
+.rating-button {
+    padding: 20px;
+    text-align: right;
+    border-top: 1px solid #000000;
+}
+
+.rating-button__submit {
+    background: #FF8282;
+    border: none;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    font-size: 24px;
+    border-radius: 5px;
+    cursor: pointer;
+}

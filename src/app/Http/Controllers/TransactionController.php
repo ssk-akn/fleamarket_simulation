@@ -18,13 +18,37 @@ class TransactionController extends Controller
         $user = Auth::user();
         $item = Item::findOrFail($item_id);
         $order = Order::where('item_id', $item_id)->first();
+        $messages = TransactionMessage::where('order_id', $order->id)->with('user')->get();
 
         if ($user->id === $item->user_id){
             $partner = User::findOrFail($order->user_id);
         } else {
             $partner = User::findOrFail($item->user_id);
         }
-        $messages = TransactionMessage::where('order_id', $order->id)->with('user')->get();
+
+        $purchasedItems = Item::whereHas('order', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->whereDoesntHave('order.reviews', function ($query) use ($user) {
+            $query->where('reviewer_id', $user->id);
+        })
+        ->where('id', '!=', $item->id)
+        ->with('order.messages')->
+        get();
+
+        $soldItems = Item::where('user_id', $user->id)
+            ->has('order')
+            ->whereDoesntHave('order.reviews', function ($query) use ($user) {
+                $query->where('reviewer_id', $user->id);
+            })
+            ->where('id', '!=', $item->id)
+            ->with('order.messages')
+            ->get();
+
+        $allTransactions = $purchasedItems->merge($soldItems);
+
+        $allTransactions = $allTransactions->sortByDesc(function ($item) {
+            return optional($item->order->messages->last())->created_at;
+        })->values();
 
         $reviewExists = TransactionReview::where('order_id', $order->id)
             ->where('reviewer_id', $user->id)
@@ -33,7 +57,7 @@ class TransactionController extends Controller
         $completed = $order->status === 'complete';
 
         return view('transaction', compact(
-            'user', 'item', 'partner', 'messages', 'order', 'reviewExists', 'completed'
+            'user', 'item', 'partner', 'messages', 'order', 'reviewExists', 'completed', 'allTransactions'
         ));
     }
 
@@ -52,7 +76,7 @@ class TransactionController extends Controller
             'image'    => $imagePath,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('message_sent', true);
     }
 
     public function update(Request $request, $message_id)
