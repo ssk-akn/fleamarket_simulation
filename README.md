@@ -11,6 +11,8 @@
   - 商品を購入（決済はStripeを使用）
   - 商品を出品
   - マイページにてプロフィールを確認、編集
+  - 取引画面にて取引相手とチャットでの連絡
+  - 取引画面にて取引の完了登録(購入者)、取引相手を評価
 ## 環境構築
 ### Dockerビルド
 1. git clone git@github.com:ssk-akn/fleamarket_simulation.git
@@ -67,11 +69,14 @@ STRIPE_SECRET=your_stripe_secret_key
 - mailhog：http://localhost:8025/
 - phpMyAdmin：http://localhost:8080/
 ## ログイン情報
-- 管理者
-  - Email: admin@example.com
+- User One
+  - Email: user1@example.com
   - Password: password123
-- 一般ユーザー
-  - Email: user@example.com
+- User Two
+  - Email: user2@example.com
+  - Password: password123
+- User Three
+  - Email: user3@example.com
   - Password: password123
 ## 決済テスト用カード情報
 - クレジットカード番号
