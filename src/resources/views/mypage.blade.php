@@ -68,7 +68,7 @@
     <div class="trading-item">
         <a href="/mypage?page=trading" class="page-button {{ $page === 'trading' ? 'active' : 'passive' }}">取引中の商品</a>
         @if ($totalUnread > 0)
-            <span class="tab-badge">{{ $totalUnread }}</span>
+        <span class="tab-badge">{{ $totalUnread }}</span>
         @endif
     </div>
 </div>
