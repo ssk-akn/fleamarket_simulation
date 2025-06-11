@@ -85,17 +85,17 @@
                 <button type="submit" class="transaction-form__button">
                     <img src="{{ asset('image/inputbutton.jpg') }}" alt="送信" class="transaction-form__button-img">
                 </button>
-                @error('message')
-                <p class="error">
-                    {{ $message }}
-                </p>
-                @enderror
-                @error('image')
-                <p class="error">
-                    {{ $message }}
-                </p>
-                @enderror
             </form>
+            @error('message')
+            <p class="error">
+                {{ $message }}
+            </p>
+            @enderror
+            @error('image')
+            <p class="error">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
     </div>
 </div>

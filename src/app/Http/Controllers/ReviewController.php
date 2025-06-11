@@ -39,6 +39,6 @@ class ReviewController extends Controller
             'rating' => $request->rating,
         ]);
 
-        return redirect()->route('transaction.get', ['item_id' => $order->item_id]);
+        return redirect()->route('item.list');
     }
 }

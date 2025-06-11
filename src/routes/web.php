@@ -20,7 +20,7 @@ use App\Http\Controllers\ReviewController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('item.list');
 Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('item.detail');
 
 Route::middleware('auth', 'verified')->group(function () {

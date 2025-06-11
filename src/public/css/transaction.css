@@ -229,6 +229,11 @@
     width: 100%;
 }
 
+.error {
+    margin-left: 15px;
+    color: #FF5555;
+}
+
 /* モーダル */
 .model-overlay {
     position: fixed;
