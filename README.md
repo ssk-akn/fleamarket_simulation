@@ -31,6 +31,10 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
+```
+MAIL_FROM_ADDRESS=email@example.com
+MAIL_FROM_NAME="フリマアプリ"
+```
 5. アプリケーションキーの作成
 ```
 php artisan key:generate
