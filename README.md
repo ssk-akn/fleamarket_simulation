@@ -85,19 +85,9 @@ STRIPE_SECRET=your_stripe_secret_key
   - 有効な将来の日付を使用
 - セキュリティコード
   - 任意の 3 桁の数字
-## テーブル設計
-
-![スクリーンショット (19)](https://github.com/user-attachments/assets/cc660da8-1829-4002-a1f7-8788e2a5422f)
-![スクリーンショット (9)](https://github.com/user-attachments/assets/cc86a7f4-a1c9-4735-98fe-9a2fa207e550)
-![スクリーンショット (10)](https://github.com/user-attachments/assets/cb0d6056-5d68-4ea1-9fad-9d46976986a7)
-
-
 ## ER図
 
-![スクリーンショット (1)](https://github.com/user-attachments/assets/03b207bd-cbc7-4edd-9361-bdf191f74d1a)
-
-
-
+![スクリーンショット (21)](https://github.com/user-attachments/assets/285e8135-72f4-4e7e-8fc5-da589199c0fa)
 
 ## 使用技術(実行環境)
 - PHP8.3.0
