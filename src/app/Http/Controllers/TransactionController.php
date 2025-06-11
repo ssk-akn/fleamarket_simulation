@@ -16,9 +16,10 @@ class TransactionController extends Controller
     public function getTransaction($item_id)
     {
         $user = Auth::user();
-        $item = Item::findOrFail($item_id);
-        $order = Order::where('item_id', $item_id)->first();
+        $item = Item::with('order.messages.user')->findOrFail($item_id);
+        $order = $item->order;
         $messages = TransactionMessage::where('order_id', $order->id)->with('user')->get();
+        $completed = $order->status === 'complete';
 
         if ($user->id === $item->user_id){
             $partner = User::findOrFail($order->user_id);
@@ -27,13 +28,13 @@ class TransactionController extends Controller
         }
 
         $purchasedItems = Item::whereHas('order', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })->whereDoesntHave('order.reviews', function ($query) use ($user) {
-            $query->where('reviewer_id', $user->id);
-        })
-        ->where('id', '!=', $item->id)
-        ->with('order.messages')->
-        get();
+                $query->where('user_id', $user->id);
+            })->whereDoesntHave('order.reviews', function ($query) use ($user) {
+                $query->where('reviewer_id', $user->id);
+            })
+            ->where('id', '!=', $item->id)
+            ->with('order.messages')
+            ->get();
 
         $soldItems = Item::where('user_id', $user->id)
             ->has('order')
@@ -54,7 +55,10 @@ class TransactionController extends Controller
             ->where('reviewer_id', $user->id)
             ->exists();
 
-        $completed = $order->status === 'complete';
+        TransactionMessage::where('order_id', $order->id)
+            ->where('user_id', '!=', $user->id)
+            ->where('is_read', false)
+            ->update(['is_read' => true]);
 
         return view('transaction', compact(
             'user', 'item', 'partner', 'messages', 'order', 'reviewExists', 'completed', 'allTransactions'

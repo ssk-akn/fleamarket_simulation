@@ -79,4 +79,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(TransactionReview::class, 'reviewer_id');
     }
+
+    public function getRoundedRatingAttribute()
+    {
+        return $this->receivedReviews()->count() > 0
+            ? round($this->receivedReviews()->avg('rating'))
+            : null;
+    }
 }

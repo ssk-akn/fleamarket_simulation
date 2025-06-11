@@ -9,11 +9,9 @@
     <div class="other-transactions">
         <h2>その他の取引</h2>
         @foreach ($allTransactions as $transaction)
-        <div class="other-transactions__link">
             <a href="/transaction/{{ $transaction->id }}">
                 {{ $transaction->name }}
             </a>
-        </div>
         @endforeach
     </div>
     <div class="trading-screen">
@@ -46,11 +44,12 @@
             @foreach ($messages as $message)
                 @php
                     $isOwnMessage = $user->id === $message->user_id;
+                    $iconPath = $isOwnMessage ? $user->image : $partner->image;
                 @endphp
                 <div class="transaction-item {{ $isOwnMessage ? 'own' : 'other' }}">
                     <div class="transaction-user">
                         <div class="transaction-user__image-circle">
-                            <img class="transaction-user__image" src="{{ asset('storage/' . $partner->image) }}" alt="アイコン">
+                            <img class="transaction-user__image" src="{{ asset('storage/' . $iconPath) }}" alt="アイコン">
                         </div>
                         <div class="transaction-user__name">{{ $message->user->name }}</div>
                     </div>
@@ -58,9 +57,9 @@
                     <form action="/transaction/update/{{ $message->id }}" method="POST" class="transaction-item__form">
                         @csrf
                         @method('PATCH')
-                        <p class="transaction-message">
+                        <div class="transaction-message">
                             <textarea name="message">{{ $message->message }}</textarea>
-                        </p>
+                        </div>
                         <div class="transaction-message__button">
                             <button type="submit" class="button-submit">編集</button>
                             <button type="button" onclick="document.getElementById('delete-form-{{ $message->id }}').submit()" class="button-submit">削除</button>

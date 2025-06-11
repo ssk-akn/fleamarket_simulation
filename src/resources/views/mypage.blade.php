@@ -42,8 +42,15 @@
     <div class="image-circle">
         <img class="user-image" src="{{ asset('storage/' . $user->image) }}" alt="">
     </div>
-    <div class="user-name">
-        {{ $user->name }}
+    <div class="user-info">
+        <div class="user-name">{{ $user->name }}</div>
+        @if ($user->rounded_rating)
+        <div class="user-rating">
+            @for ($i = 1; $i <= 5; $i++)
+            <span class="{{ $i <= $user->rounded_rating ? 'star-filled' : 'star-empty' }}">★</span>
+            @endfor
+        </div>
+        @endif
     </div>
     <div class="profile-edit">
         <a href="/mypage/profile" class="profile-edit__button">
@@ -58,40 +65,65 @@
     <div class="buy-item">
         <a href="/mypage?page=buy" class="page-button {{ $page === 'buy' ? 'active' : 'passive' }}">購入した商品</a>
     </div>
+    <div class="trading-item">
+        <a href="/mypage?page=trading" class="page-button {{ $page === 'trading' ? 'active' : 'passive' }}">取引中の商品</a>
+        @if ($totalUnread > 0)
+            <span class="tab-badge">{{ $totalUnread }}</span>
+        @endif
+    </div>
 </div>
 <div class="items-wrap">
     @if ($page === 'sell')
-    @foreach ($sellItems as $item)
-    <div class="item-contents">
-        <a href="/item/{{ $item->id }}">
-            <div class="item-image">
-                <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+        @foreach ($sellItems as $item)
+            <div class="item-contents">
+                <a href="/item/{{ $item->id }}">
+                    <div class="item-image">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+                    </div>
+                    <div class="content-item">
+                        <p class="item-name">{{ $item->name }}</p>
+                        @if ($item->order)
+                        <p class="sold">Sold</p>
+                        @endif
+                    </div>
+                </a>
             </div>
-            <div class="content-item">
-                <p class="item-name">{{ $item->name }}</p>
-                @if ($item->order)
-                <p class="sold">Sold</p>
-                @endif
+        @endforeach
+    @elseif ($page === 'buy')
+        @foreach ($buyItems as $item)
+            <div class="item-contents">
+                <a href="/item/{{ $item->id }}">
+                    <div class="item-image">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+                    </div>
+                    <div class="content-item">
+                        <p class="item-name">{{ $item->name }}</p>
+                        @if ($item->order)
+                        <p class="sold">Sold</p>
+                        @endif
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-    @endforeach
+        @endforeach
     @else
-    @foreach ($buyItems as $item)
-    <div class="item-contents">
-        <a href="/item/{{ $item->id }}">
-            <div class="item-image">
-                <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+        @foreach ($allTransactions as $item)
+            <div class="item-contents">
+                <a href="/transaction/{{ $item->id }}">
+                    <div class="item-image">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="商品画像">
+                        @if (!empty($unreadCounts[$item->id]) && $unreadCounts[$item->id] > 0)
+                        <div class="notification-badge">{{ $unreadCounts[$item->id] }}</div>
+                        @endif
+                    </div>
+                    <div class="content-item">
+                        <p class="item-name">{{ $item->name }}</p>
+                        @if ($item->order)
+                        <p class="sold">Sold</p>
+                        @endif
+                    </div>
+                </a>
             </div>
-            <div class="content-item">
-                <p class="item-name">{{ $item->name }}</p>
-                @if ($item->order)
-                <p class="sold">Sold</p>
-                @endif
-            </div>
-        </a>
-    </div>
-    @endforeach
+        @endforeach
     @endif
 </div>
 @endsection

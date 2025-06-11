@@ -15,7 +15,8 @@ class TransactionMessage extends Model
         'order_id',
         'user_id',
         'message',
-        'image'
+        'image',
+        'is_read',
     ];
 
     public function order()

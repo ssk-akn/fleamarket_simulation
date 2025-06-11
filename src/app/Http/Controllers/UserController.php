@@ -19,9 +19,46 @@ class UserController extends Controller
         $buyItemIds = Order::where('user_id', $user->id)->pluck('item_id');
         $buyItems = Item::whereIn('id', $buyItemIds)->get();
 
-        $page = $request->get('page', 'sell');
+        $purchasedItems = Item::whereHas('order', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->whereDoesntHave('order.reviews', function ($query) use ($user) {
+                $query->where('reviewer_id', $user->id);
+            })
+            ->with('order.messages')
+            ->get();
 
-        return view('mypage', compact('user', 'sellItems', 'buyItems', 'page'));
+        $soldItems = Item::where('user_id', $user->id)
+            ->has('order')
+            ->whereDoesntHave('order.reviews', function ($query) use ($user) {
+                $query->where('reviewer_id', $user->id);
+            })
+            ->with('order.messages')
+            ->get();
+
+        $allTransactions = $purchasedItems->merge($soldItems);
+
+        $allTransactions = $allTransactions->sortByDesc(function ($item) {
+            return optional($item->order->messages->last())->created_at;
+        })->values();
+
+        $page = $request->get('page', 'sell', 'trading');
+
+        $unreadCounts = [];
+
+        foreach ($allTransactions as $item) {
+            $order = $item->order;
+            $count = $order
+                ? $order->messages()
+                    ->where('user_id', '!=', $user->id)
+                    ->where('is_read', false)
+                    ->count()
+                : 0;
+            $unreadCounts[$item->id] = $count;
+        }
+
+        $totalUnread = array_sum($unreadCounts);
+
+        return view('mypage', compact('user', 'sellItems', 'buyItems', 'allTransactions', 'page', 'unreadCounts', 'totalUnread'));
     }
 
     public function getProfile()

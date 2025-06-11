@@ -75,10 +75,22 @@
     background: #D9D9D9;
 }
 
-.user-name {
+.user-info {
     margin-left: 50px;
+}
+
+.user-name,
+.user-rating {
     font-size: 36px;
     font-weight: bold;
+}
+
+.star-filled {
+    color: #FFF048;
+}
+
+.star-empty {
+    color: #D9D9D9;
 }
 
 .profile-edit__button {
@@ -95,12 +107,12 @@
 .page-button__group {
     display: flex;
     margin: 40px 0;
-    padding: 10px 100px;
+    padding: 10px;
     border-bottom: 2px solid #5F5F5F;
 }
 
 .page-button {
-    margin-right: 45px;
+    margin-left: 100px;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
@@ -109,6 +121,15 @@
 
 .active {
     color: #FF0000;
+}
+
+.tab-badge {
+    padding: 0 10px;
+    background: #FF0000;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 
 .items-wrap {
@@ -150,6 +171,20 @@
 .item-image {
     width: 100%;
     aspect-ratio: 1;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 0 5px;
+    background: #FF0000;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 50%;
+    text-align: center;
 }
 
 .content-item {
@@ -191,6 +226,17 @@
         margin: 0 5px;
     }
 
+    .tab-badge {
+        padding: 0 7px;
+        font-size: 16px;
+    }
+
+    .notification-badge {
+        padding: 0 4px;
+        font-size: 10px;
+    }
+
+
     .item-name {
         font-size: 15px;
     }
@@ -209,8 +255,8 @@
         height: 80px;
     }
 
-    .user-name {
-        margin-left: 30px;
+    .user-name,
+    .user-rating {
         font-size: 26px;
     }
 
@@ -221,7 +267,7 @@
     }
 
     .page-button {
-        margin-right: 25px;
-        font-size: 20px;
+        margin-left: 50px;
+        font-size: 18px;
     }
 }

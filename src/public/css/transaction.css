@@ -14,18 +14,16 @@
     color: #FFFFFF;
 }
 
-.other-transactions__link {
+.other-transactions a {
+    display: block;
     width: 80%;
     margin: 30px auto;
     padding: 10px 0;
     background: #EEEFEB;
-    border-radius: 5px;
-}
-
-.other-transactions__link a {
     text-decoration: none;
-    font-size: 24px;
+    font-size: 20px;
     color: #000000;
+    border-radius: 5px;
 }
 
 .trading-screen {
@@ -121,6 +119,7 @@
 .transaction-user {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 /* 左（相手） */
@@ -304,4 +303,114 @@
     font-size: 24px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+.other-transactions {
+    width: 25%;
+}
+
+.other-transactions h2 {
+    font-size: 20px;
+}
+
+.other-transactions a {
+    margin: 20px auto;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.trading-screen__top {
+    padding: 20px;
+}
+
+.user-image,
+.transaction-user__image {
+    height: 70px;
+}
+
+.image-circle,
+.transaction-user__image-circle {
+    width: 70px;
+    height: 70px;
+}
+
+.trading-screen__top-item h2 {
+    margin-left: 15px;
+    font-size: 25px;
+}
+
+.transaction-completed__button {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.item-name {
+    font-size: 38px;
+}
+
+.item-price {
+    font-size: 30px;
+}
+
+.transaction-user__image {
+    height: 55px;
+}
+
+.transaction-user__image-circle {
+    width: 55px;
+    height: 55px;
+}
+
+.transaction-user__name {
+    font-size: 18px;
+}
+
+.transaction-message textarea,
+.partner-message {
+    width: 60%;
+    font-size: 18px;
+}
+
+.message-input {
+    width: 70%;
+    margin: 8px;
+    font-size: 18px;
+}
+
+.image-input__custom {
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* モーダル */
+.model-content {
+    width: 65%;
+}
+
+.model-message {
+    font-size: 30px;
+}
+
+.rating-message {
+    font-size: 18px;
+}
+
+.star {
+    gap: 8px;
+}
+
+.star label {
+    font-size: 80px;
+}
+
+.rating-button {
+    padding: 15px;
+}
+
+.rating-button__submit {
+    padding: 10px;
+    font-size: 20px;
+}
+
 }
