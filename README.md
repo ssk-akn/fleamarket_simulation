@@ -56,13 +56,6 @@ composer require stripe/stripe-php
 STRIPE_KEY=your_stripe_public_key
 STRIPE_SECRET=your_stripe_secret_key
 ```
-11. config/services.phpにStripeの設定を追加
-```
-'stripe' => [
-    'key' => env('STRIPE_KEY'),
-    'secret' => env('STRIPE_SECRET'),
-],
-```
 ## 開発環境
 - 商品一覧画面：http://localhost/
 - 会員登録：http://localhost/register
