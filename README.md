@@ -86,9 +86,7 @@ STRIPE_SECRET=your_stripe_secret_key
 - セキュリティコード
   - 任意の 3 桁の数字
 ## ER図
-
-![スクリーンショット (21)](https://github.com/user-attachments/assets/285e8135-72f4-4e7e-8fc5-da589199c0fa)
-
+![スクリーンショット (22)](https://github.com/user-attachments/assets/f39a375f-2bfd-4c35-a27a-b9339457acda)
 ## 使用技術(実行環境)
 - PHP8.3.0
 - Laravel8.83.29
